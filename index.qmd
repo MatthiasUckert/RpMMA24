@@ -13,13 +13,25 @@ editor:
 
 Welcome to the practical application sessions of the **Mannheim Master in Management
 Analytics - Accounting Class 2024.** In the next two days you will see how to solve common
-business applications with R and Excel and to dive deeper into web-scraping.
-
-The goal of those sessions is to give you a general overview of how common workflows can
-be automated/streamlined.
+business applications with R and Excel and to dive deeper into web-scraping. The goal of
+those sessions is to give you a general overview of how common workflows can be
+automated/streamlined.
 
 All sessions are programmed in R and a basic understanding of programming is needed. The
 code itself applies relatively advanced methods, but we will go through it step-by-step.
+
+------------------------------------------------------------------------------------------
+
+# Install R and Rstudio
+
+You will need R and RStudio installed for the interactive exercises. The process is
+straight-forward and already has been well explained by others so please follow that link
+to install the necessary components for R and Rstudio:
+
+<https://rstudio-education.github.io/hopr/starting.html>
+
+In case you have any problems (that always happens, no worries), we will solve this in
+class.
 
 ------------------------------------------------------------------------------------------
 
@@ -63,3 +75,4 @@ contents, or by navigating through the drop-down menus at the top of the page.
 
 -   **Advanced R: <https://adv-r.hadley.nz/>**
 -   **R for Data Science: <https://r4ds.had.co.nz/>**
+-   **Hands-On Programming With R:** <https://rstudio-education.github.io/hopr/>
