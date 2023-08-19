@@ -9,65 +9,84 @@ editor:
     wrap: 90
 ---
 
-# Introduction
+# **Introduction**
 
-Welcome to the practical application sessions of the **Mannheim Master in Management
-Analytics - Accounting Class 2024.** In the next two days you will see how to solve common
-business applications with R and Excel and to dive deeper into web-scraping. The goal of
-those sessions is to give you a general overview of how common workflows can be
-automated/streamlined.
+Welcome to the **Mannheim Master in Management Analytics - Accounting Class of 2024**
+practical application sessions. Over the next two days, we will delve into the application
+of R and Excel to address prevalent business challenges, with a particular focus on
+web-scraping. Our aim is to equip you with insights into the automation and optimization
+of routine workflows.
 
-All sessions are programmed in R and a basic understanding of programming is needed. The
-code itself applies relatively advanced methods, but we will go through it step-by-step.
+While the sessions are designed in R, a foundational understanding of programming is
+crucial. We will methodically break down the advanced techniques used in the code for
+better comprehension.
 
-------------------------------------------------------------------------------------------
+# **Resources and Assistance**
 
-# Install R and Rstudio
+Engage in guided in-class exercises throughout these sessions. This year, we're bolstered
+by the support of Large Language Models (LLMs). I strongly advocate for the utilization of
+these tools to amplify your learning experience. Here's a snapshot of some leading LLMs:
 
-You will need R and RStudio installed for the interactive exercises. The process is
-straight-forward and already has been well explained by others so please follow that link
-to install the necessary components for R and Rstudio:
+-   [**ChatGPT (3.5/4.0)**](https://chat.openai.com/): A distinguished tool in the AI
+    domain.
 
-<https://rstudio-education.github.io/hopr/starting.html>
+-   [**Perplexity AI**](https://www.perplexity.ai/): Harnessing the GPT-4 framework, it
+    offers native web-searching capabilities.
 
-In case you have any problems (that always happens, no worries), we will solve this in
-class.
+-   [**Google Bard**](https://bard.google.com/): A notable AI tool in the market.
 
-------------------------------------------------------------------------------------------
+-   [**Claude AI**](https://claude.ai/login): Accessible primarily in US/UK; VPN can
+    provide broader access.
 
-# Get The Code
+For effective prompting, consider:
 
-The complete code is hosted on my GitHub page: <https://github.com/MatthiasUckert/RpMMA24>
+-   [**PromptPerfect**](https://promptperfect.jina.ai/home): Enhance your prompting
+    skills.
 
-Simply fork the repository into your own GitHub or download the Project.
+-   [**PromptoMania**](https://promptomania.com/): An AI-driven prompt generator.
 
-------------------------------------------------------------------------------------------
+**Disclaimer:**
+
+LLMs may produce diverse results. Some might provide direct solutions, while others may
+necessitate further adjustments. The primary goal is understanding, not necessarily
+mastering every coding detail. The overarching principle is: **If it's effective, it's
+right!**
+
+# **Setting Up R and Rstudio**
+
+R and RStudio installations are imperative for our interactive exercises. The setup is
+intuitive. Kindly follow the
+[**instructions**](https://rstudio-education.github.io/hopr/starting.html) to install the
+necessary components. We're here to assist should you face any challenges.
+
+# **Accessing the Code**
+
+The comprehensive codebase for our sessions is hosted on my GitHub page:
+[**MatthiasUckert/RpMMA24**](https://github.com/MatthiasUckert/RpMMA24). You can either
+fork the repository to your GitHub account or download the project directly.
 
 # Table of Content
 
-You can navigate to the individual sessions by either following the link in the table of
-contents, or by navigating through the drop-down menus at the top of the page.
+Navigate through the sessions using the links in this table or the drop-down menus atop
+the page.
 
-+----------------+---------------------------------------------------+
-| Day            | Description                                       |
-+:===============+:==================================================+
-| Day 1          | **Building an Excel Business Case**               |
-|                |                                                   |
-|                | In this session we will start by building a       |
-|                | simple business case in Excel. Specifically, we   |
-|                | will evaluate a small business decision with      |
-|                | common metrics such as Contribution Margins.      |
-+----------------+---------------------------------------------------+
-| Day 2          | **Getting Data from the Web**                     |
-|                |                                                   |
-|                | In this session we will learn how to scrape       |
-|                | websites if no API is provided. Specifically we   |
-|                | will download PDF Annual Reports from             |
-|                | www.AnnualReport.com. Additionally, we will learn |
-|                | how the use the Electronic Data Gathering,        |
-|                | Analysis, and Retrieval system (EDGAR) API to     |
-|                | download US Financial Reports.                    |
-+----------------+---------------------------------------------------+
++---------------------+------------------------------------------------------------------+
+| Day                 | Description                                                      |
++:====================+:=================================================================+
+| Day 1               | [**Building an Excel Business Case**](exercises/day1.qmd)        |
+|                     |                                                                  |
+|                     | Construct a concise business case in Excel, evaluating a         |
+|                     | business decisions using metrics like the **Contribution         |
+|                     | Margin**                                                         |
++---------------------+------------------------------------------------------------------+
+| Day 2               | [**Getting Data from the Web**](exercises/day2.qmd)              |
+|                     |                                                                  |
+|                     | Master web scraping in scenarios with and without an API.        |
+|                     |                                                                  |
+|                     | -   <http://www.annualreport.com/>                               |
+|                     |                                                                  |
+|                     | -   <https://www.sec.gov/edgar>                                  |
++---------------------+------------------------------------------------------------------+
 
 ------------------------------------------------------------------------------------------
 
