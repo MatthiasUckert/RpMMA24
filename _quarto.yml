@@ -1,0 +1,68 @@
+# website settings
+website:
+  title: "PTMMA24"
+  navbar:
+    pinned: true
+    logo: /img/Uni-Mannheim.png
+    left:
+      - text: "Day 1"
+        href: exercises/day1.qmd
+      - text: "Day 2"
+        href: exercises/day2.qmd
+
+    
+    # your social media handles
+    right:
+    - icon: github
+      text: Github
+      href: https://github.com/MatthiasUckert
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/matthias-uckert-579644a9/
+    - icon: envelope
+      text: Email
+      href: "mailto:matthias.uckert@uni-mannheim.de" 
+    - icon: file-earmark
+      text: CV
+      href: cv/index.qmd
+
+  
+
+# Don't touch unless you know what you are doing :) ------------
+  search: 
+    location: navbar
+    type: textbox
+  page-footer: 
+    left: |
+      <span class="faux-block">&#169; Matthias Uckert (2023)</span>
+    center:
+      <span class="faux-block"><a href="https://github.com/MatthiasUckert/RpMMA24/">View source on GitHub</a></span>
+
+project:
+  type: website
+  output-dir: docs
+
+  preview: 
+    port: 22222
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+execute:
+  freeze: true
+
+format:
+  html:
+    fontsize: 1.1em
+    # theme: 
+    #   - pulse
+    #   - html/styles.scss
+    toc: true
+    toc-location: left
+    toc-title: "Table of Contents"
+    code-link: true
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    page-layout: full

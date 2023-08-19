@@ -1,0 +1,65 @@
+---
+about:
+  template: marquee
+html:
+  includes:
+    in_header: open-links-in-new-tab.js
+editor: 
+  markdown: 
+    wrap: 90
+---
+
+# Introduction
+
+Welcome to the practical application sessions of the **Mannheim Master in Management
+Analytics - Accounting Class 2024.** In the next two days you will see how to solve common
+business applications with R and Excel and to dive deeper into web-scraping.
+
+The goal of those sessions is to give you a general overview of how common workflows can
+be automated/streamlined.
+
+All sessions are programmed in R and a basic understanding of programming is needed. The
+code itself applies relatively advanced methods, but we will go through it step-by-step.
+
+------------------------------------------------------------------------------------------
+
+# Get The Code
+
+The complete code is hosted on my GitHub page: <https://github.com/MatthiasUckert/RpMMA24>
+
+Simply fork the repository into your own GitHub or download the Project.
+
+------------------------------------------------------------------------------------------
+
+# Table of Content
+
+You can navigate to the individual sessions by either following the link in the table of
+contents, or by navigating through the drop-down menus at the top of the page.
+
++----------------+---------------------------------------------------+
+| Day            | Description                                       |
++:===============+:==================================================+
+| Day 1          | **Building an Excel Business Case**               |
+|                |                                                   |
+|                | In this session we will start by building a       |
+|                | simple business case in Excel. Specifically, we   |
+|                | will evaluate a small business decision with      |
+|                | common metrics such as Contribution Margins.      |
++----------------+---------------------------------------------------+
+| Day 2          | **Getting Data from the Web**                     |
+|                |                                                   |
+|                | In this session we will learn how to scrape       |
+|                | websites if no API is provided. Specifically we   |
+|                | will download PDF Annual Reports from             |
+|                | www.AnnualReport.com. Additionally, we will learn |
+|                | how the use the Electronic Data Gathering,        |
+|                | Analysis, and Retrieval system (EDGAR) API to     |
+|                | download US Financial Reports.                    |
++----------------+---------------------------------------------------+
+
+------------------------------------------------------------------------------------------
+
+# Interesting Readings
+
+-   **Advanced R: <https://adv-r.hadley.nz/>**
+-   **R for Data Science: <https://r4ds.had.co.nz/>**
