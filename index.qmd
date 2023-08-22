@@ -54,14 +54,14 @@ right!**
 
 # **Setting Up R and Rstudio**
 
-R and RStudio installations are imperative for our interactive exercises. The setup is
+R and RStudio installations are needed for our interactive exercises. The setup is
 intuitive. Kindly follow the
 [**instructions**](https://rstudio-education.github.io/hopr/starting.html) to install the
-necessary components. We're here to assist should you face any challenges.
+necessary components.
 
-# **Accessing the Code**
+**Accessing the Code**
 
-The comprehensive codebase for our sessions is hosted on my GitHub page:
+The codebase for our sessions is hosted on my GitHub page:
 [**MatthiasUckert/RpMMA24**](https://github.com/MatthiasUckert/RpMMA24). You can either
 fork the repository to your GitHub account or download the project directly.
 

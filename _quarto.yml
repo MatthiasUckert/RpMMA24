@@ -5,6 +5,8 @@ website:
     pinned: true
     logo: /img/Uni-Mannheim.png
     left:
+      - text: "Day 0"
+        href: exercises/day0.qmd
       - text: "Day 1"
         href: exercises/day1.qmd
       - text: "Day 2"

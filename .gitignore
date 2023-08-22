@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 renv
+exercises/day2/
 /.quarto/

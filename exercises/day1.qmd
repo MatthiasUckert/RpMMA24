@@ -33,39 +33,9 @@ Let's get started!
 
 # Loading Libraries
 
-In this session, we'll be leveraging various R libraries, each catering to specific tasks and functionalities. Here's a breakdown of the libraries and their primary uses:
-
-**Data Manipulation and Visualization**
-
--   **`tidyverse`**: A collection of packages tailored for data science.
-
-    -   Includes **`dplyr`** for data manipulation, **`ggplot2`** for data visualization, **`readr`** for reading data, among others.
-
--   **`janitor`**: Useful for cleaning data and performing some basic data wrangling tasks.
-
-**Data I/O**
-
--   **`openxlsx`**: Specifically designed for reading from and writing to Excel sheets.
-
-**Numeric and Statistical Functions**
-
--   **`scales`**: Aids in formatting numbers, especially for data visualization purposes.
-
--   **`furrr`**: An offshoot of the **`purrr`** package, **`furrr`** makes it easy to apply functions in parallel.
-
-**Themes and Visualization Enhancements**
-
--   **`ggthemes`**: Provides additional themes and scales for **`ggplot2`**, enhancing the aesthetics and readability of plots.
-
-**Miscellaneous**
-
--   **`tictoc`**: Helps in measuring the time taken for code execution, useful for performance tuning.
-
-**Custom Functions**
-
--   **`source("additional_functions.R")`**: Loads user-defined functions from an external R script.
-
 ```{r Loading Libraries}
+#| warning: false
+#| message: false
 library(tidyverse)
 library(openxlsx)
 library(janitor)
@@ -74,6 +44,8 @@ library(tictoc)
 library(furrr)
 library(ggthemes)
 library(gt)
+library(fst)
+library(future)
 
 options(scipen = 999)
 source("additional_functions.R")
@@ -108,22 +80,27 @@ $$
 
 Use the given data to calculate the cost allocation:
 
-```{r Task 1A: Prepare the cost allocation for material (1)}
+```{r }
 mat_dic <- c("Elite" = 30000, "Premium" = 70000)
 mat_inc <- 40000
 ```
 
 **ToDo: Calculate the correct value for mat_ac**
 
-```{r Task 1A: Prepare the cost allocation for material (2)}
+```{r }
 mat_alc <- NULL # YOUR CALCULATION HERE
+```
+
+
+```{r }
+#| echo: false
 mat_alc <- mat_inc * (mat_dic / sum(mat_dic))
 mat_alc
 ```
 
 Check Your Result
 
-```{r Task 1A: Prepare the cost allocation for material (3)}
+```{r }
 check_named_vector(mat_alc, c("Elite" = 12000, "Premium" = 28000))
 ```
 
@@ -133,11 +110,15 @@ Ensure the function only accepts named numeric vectors.
 
 Name conventions: `.m_dic` for the direct cost vector, and `.s_inc` for the indirect cost (**m\_** stands for multiple values and **s\_** stands for single values).
 
-```{r Task 1B: Write a general cost allocation formula (1)}
+```{r }
 allocate_indirect_cost <- function(.m_dic, .s_inc) {
   # YOUR CODE HERE
 }
+```
 
+
+```{r }
+#| echo: false
 allocate_indirect_cost <- function(.m_dic, .s_inc) {
   if (!is.numeric(.m_dic)) stop(".m_dic must be a numeric vector", call. = FALSE)
   if (all(is.null(names(.m_dic)))) stop(".m_dic must be a named vector", call. = FALSE)
@@ -145,7 +126,10 @@ allocate_indirect_cost <- function(.m_dic, .s_inc) {
   
   .m_dic * (.s_inc / sum(.m_dic))
 }
+```
 
+
+```{r }
 mat_alc <- allocate_indirect_cost(mat_dic, mat_inc)
 ```
 
@@ -171,22 +155,28 @@ The two common methods in R to handle an arbitrary number of function inputs are
 
 Given these methods, here's how you can create the **`sum_cost`** function:
 
-```{r Task 2A: Write a general Formula for adding Cost (1)}
+```{r }
 sum_cost <- function(...) {
   # YOUR CODE HERE
 }
+```
 
+
+```{r }
+#| echo: false
 sum_cost <- function(...) {
   purrr::pmap_dbl(list(...), sum)
 }
+```
 
 
+```{r }
 mat_tot <- sum_cost(mat_dic, mat_inc )
 ```
 
 Check Your Result
 
-```{r Task 2A: Write a general Formula for adding Cost (2)}
+```{r }
 check_named_vector(mat_tot, c("Elite" = 70000, "Premium" = 110000))
 ```
 
@@ -227,6 +217,7 @@ filter_cost_input <- function(.tab, .type, .dep) {
 4.  Finally, extract just the named **`amount`** vector using the **`pull()`** function.
 
 ```{r}
+#| echo: false
 filter_cost_input <- function(.tab, .type, .dep) {
   .tab %>%
     dplyr::filter(type == .type, department == .dep) %>%
@@ -324,6 +315,7 @@ get_cost_allocations <- function(.tab_cost) {
 ```
 
 ```{r}
+#| echo: false
 get_cost_allocation_list <- function(.tab_cost) {
   lst_ <- list()
 
@@ -385,7 +377,6 @@ get_cost_allocation_skeleton <- function() {
 
 ```{r}
 get_cost_allocation_skeleton()
-
 ```
 
 ### Task 3C: Display Cost Allocation Table
@@ -444,7 +435,11 @@ The Cost Allocation Table is crucial because it breaks down both direct and indi
 get_cost_allocation_table <- function(.tab_cost) {
   # YOUR CODE HERE
 }
+```
 
+
+```{r}
+#| echo: false
 get_cost_allocation_table <- function(.tab_cost) {
   lst_cost_ <- get_cost_allocation_list(.tab_cost)
   lst_cost_ <- lst_cost_[c(
@@ -480,7 +475,7 @@ format_table(get_cost_allocation_table(tab_cost))
 Having the cost allocation ready, we no focus on performance measures, namely the contribution margin. Looking at the Contribution margin table we see that we now need another function, namely where we have one positive input value (e.g. revenue) and subtract a cost element (e.g. Variable Cost)
 
 ```{r}
-.tab_revenue <- tab_revenue <- tibble::as_tibble(
+tab_revenue <- tibble::as_tibble(
   openxlsx::read.xlsx("../Business Case.xlsx", "Revenue1")
   ) %>%
   janitor::clean_names()
@@ -500,6 +495,13 @@ The two common methods in R to handle an arbitrary number of function inputs are
 Given these methods, here's how you can create the **`substract_cost`** function:
 
 ```{r}
+subtract_cost <- function(...) {
+  # YOUR CODE HERE
+}
+```
+
+```{r}
+#| echo: false
 subtract_cost <- function(...) {
   purrr::pmap_dbl(list(...), ~ sum(c(...)[1], -c(...)[-1]))
 }
@@ -531,6 +533,7 @@ filter_revenue_input <- function(.tab, .type, .dep) {
 ```
 
 ```{r}
+#| echo: false
 filter_revenue_input <- function(.tab) {
   .tab %>%
     dplyr::arrange(product) %>%
@@ -563,6 +566,7 @@ get_cost_allocation_and_cm_list <- function(.tab_cost, .tab_revenue) {
 ```
 
 ```{r}
+#| echo: false
 get_cost_allocation_and_cm_list <- function(.tab_cost, .tab_revenue) {
   lst_cost_ <- get_cost_allocation_list(.tab_cost)
   lst_cm_   <- list()
@@ -596,6 +600,13 @@ get_contribution_margin_skeleton <- function() {
 
 ```{r}
 make_cm_table <- function(.tab_cost, .tab_revenue) {
+  # YOUR CODE HERE
+}
+```
+
+```{r}
+#| echo: false
+make_cm_table <- function(.tab_cost, .tab_revenue) {
   lst_cost_cm_ <- get_cost_allocation_and_cm_list(.tab_cost, .tab_revenue)
   lst_cm_ <- lst_cost_cm_[c("revenues", "var_cost", "cm1", "fix_cost", "cm2")]
   
@@ -609,9 +620,11 @@ make_cm_table <- function(.tab_cost, .tab_revenue) {
       ) %>%
     dplyr::mutate(Total = rowSums(.[, -(1:2)]), .after = var)
 }
+```
 
+
+```{r}
 format_table(make_cm_table(tab_cost, tab_revenue))
-
 ```
 
 # Monte Carlo Analysis
@@ -736,20 +749,20 @@ tictoc::toc()
 ```
 
 ```{r}
-# cores <- max(20, future::availableCores() - 1)
-# tictoc::tic()
-# future::plan("multisession", workers = cores)
-# lst_monte_carlo <- furrr::future_map(
-#   .x = 1:100,
-#   .f = ~ get_cost_allocation_and_cm_list(
-#     .tab_cost = randomize_input_table(tab_cost, .x),
-#     .tab_revenue = randomize_input_table(tab_revenue, .x)
-#   ),
-#   .progress = TRUE,
-#   .options = furrr::furrr_options(seed = TRUE)
-# )
-# future::plan("default")
-# tictoc::toc()
+cores <- min(20, future::availableCores() - 1)
+tictoc::tic()
+future::plan("multisession", workers = cores)
+lst_monte_carlo <- furrr::future_map(
+  .x = 1:10000,
+  .f = ~ get_cost_allocation_and_cm_list(
+    .tab_cost = randomize_input_table(tab_cost, .x),
+    .tab_revenue = randomize_input_table(tab_revenue, .x)
+  ),
+  .progress = TRUE,
+  .options = furrr::furrr_options(seed = TRUE)
+)
+future::plan("default")
+tictoc::toc()
 ```
 
 ```{r}

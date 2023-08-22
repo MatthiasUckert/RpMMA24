@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>PTMMA24 - Day 2 - TEST</title>
+<title>PTMMA24 - Day 2 - Web Scraping</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -61,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="floating nav-fixed">
+<body class="floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -81,6 +115,10 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../exercises/day0.html" rel="" target="">
+ <span class="menu-text">Day 0</span></a>
+  </li>  
   <li class="nav-item">
     <a class="nav-link" href="../exercises/day1.html" rel="" target="">
  <span class="menu-text">Day 1</span></a>
@@ -121,17 +159,67 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of Contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#webscraping-without-api" id="toc-webscraping-without-api" class="nav-link" data-scroll-target="#webscraping-without-api">Webscraping without API</a>
+  <ul class="collapse">
+  <li><a href="#loading-libraries" id="toc-loading-libraries" class="nav-link" data-scroll-target="#loading-libraries">Loading Libraries</a></li>
+  <li><a href="#task-1-understanding-the-website" id="toc-task-1-understanding-the-website" class="nav-link" data-scroll-target="#task-1-understanding-the-website">Task 1: Understanding the Website</a>
+  <ul class="collapse">
+  <li><a href="#step-1-visit-the-website" id="toc-step-1-visit-the-website" class="nav-link" data-scroll-target="#step-1-visit-the-website">Step 1: Visit the Website</a></li>
+  <li><a href="#step-2-check-the-robots.txt-file" id="toc-step-2-check-the-robots.txt-file" class="nav-link" data-scroll-target="#step-2-check-the-robots.txt-file">Step 2: Check the <strong><code>robots.txt</code></strong> File</a></li>
+  <li><a href="#step-3-analyze-the-results" id="toc-step-3-analyze-the-results" class="nav-link" data-scroll-target="#step-3-analyze-the-results">Step 3: Analyze the Results</a></li>
+  </ul></li>
+  <li><a href="#task-2-scrape-a-list-of-all-companies-on-annualreport.com" id="toc-task-2-scrape-a-list-of-all-companies-on-annualreport.com" class="nav-link" data-scroll-target="#task-2-scrape-a-list-of-all-companies-on-annualreport.com">Task 2: Scrape a list of all companies on annualreport.com</a>
+  <ul class="collapse">
+  <li><a href="#step-1-identify-the-data" id="toc-step-1-identify-the-data" class="nav-link" data-scroll-target="#step-1-identify-the-data">Step 1: Identify the Data</a></li>
+  <li><a href="#step-2-write-the-get_companies-function" id="toc-step-2-write-the-get_companies-function" class="nav-link" data-scroll-target="#step-2-write-the-get_companies-function">Step 2: Write the <code>get_companies</code> Function</a></li>
+  <li><a href="#step-3-test-the-function" id="toc-step-3-test-the-function" class="nav-link" data-scroll-target="#step-3-test-the-function">Step 3: Test the Function</a></li>
+  <li><a href="#step-4-review-the-results" id="toc-step-4-review-the-results" class="nav-link" data-scroll-target="#step-4-review-the-results">Step 4: Review the Results</a></li>
+  </ul></li>
+  <li><a href="#download-raw-htmls" id="toc-download-raw-htmls" class="nav-link" data-scroll-target="#download-raw-htmls">Download Raw HTMLs</a>
+  <ul class="collapse">
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#usage-tips" id="toc-usage-tips" class="nav-link" data-scroll-target="#usage-tips">Usage Tips</a></li>
+  <li><a href="#save-htmls" id="toc-save-htmls" class="nav-link" data-scroll-target="#save-htmls">Save HTMLs</a></li>
+  <li><a href="#read-the-log-file" id="toc-read-the-log-file" class="nav-link" data-scroll-target="#read-the-log-file">Read the log file</a></li>
+  </ul></li>
+  <li><a href="#task-3-scrape-all-information-for-a-single-company" id="toc-task-3-scrape-all-information-for-a-single-company" class="nav-link" data-scroll-target="#task-3-scrape-all-information-for-a-single-company">Task 3: Scrape all information for a single company</a>
+  <ul class="collapse">
+  <li><a href="#step-1-identify-the-data-1" id="toc-step-1-identify-the-data-1" class="nav-link" data-scroll-target="#step-1-identify-the-data-1">Step 1: Identify the Data</a></li>
+  <li><a href="#step-2-write-the-get_company_info-function" id="toc-step-2-write-the-get_company_info-function" class="nav-link" data-scroll-target="#step-2-write-the-get_company_info-function">Step 2: Write the <code>get_company_info</code> Function</a></li>
+  <li><a href="#step-3-test-the-function-1" id="toc-step-3-test-the-function-1" class="nav-link" data-scroll-target="#step-3-test-the-function-1">Step 3: Test the Function</a></li>
+  <li><a href="#step-4-review-the-results-1" id="toc-step-4-review-the-results-1" class="nav-link" data-scroll-target="#step-4-review-the-results-1">Step 4: Review the Results</a></li>
+  </ul></li>
+  <li><a href="#task-4-scrape-the-annual-reports-links" id="toc-task-4-scrape-the-annual-reports-links" class="nav-link" data-scroll-target="#task-4-scrape-the-annual-reports-links">Task 4: Scrape the Annual Reports Links</a>
+  <ul class="collapse">
+  <li><a href="#step-1-identify-the-data-2" id="toc-step-1-identify-the-data-2" class="nav-link" data-scroll-target="#step-1-identify-the-data-2">Step 1: Identify the Data</a></li>
+  <li><a href="#step-2-write-the-get_company_reports-function" id="toc-step-2-write-the-get_company_reports-function" class="nav-link" data-scroll-target="#step-2-write-the-get_company_reports-function">Step 2: Write the <code>get_company_reports</code> Function</a></li>
+  <li><a href="#step-3-test-the-function-2" id="toc-step-3-test-the-function-2" class="nav-link" data-scroll-target="#step-3-test-the-function-2">Step 3: Test the Function</a></li>
+  <li><a href="#step-4-review-the-results-2" id="toc-step-4-review-the-results-2" class="nav-link" data-scroll-target="#step-4-review-the-results-2">Step 4: Review the Results</a></li>
+  </ul></li>
+  <li><a href="#get-company-information-and-report-links" id="toc-get-company-information-and-report-links" class="nav-link" data-scroll-target="#get-company-information-and-report-links">Get Company Information and Report Links</a></li>
+  <li><a href="#download-the-annual-reports" id="toc-download-the-annual-reports" class="nav-link" data-scroll-target="#download-the-annual-reports">Download the Annual Reports</a></li>
+  </ul></li>
+  <li><a href="#webscraping-with-api" id="toc-webscraping-with-api" class="nav-link" data-scroll-target="#webscraping-with-api">Webscraping with API</a></li>
+  </ul>
+</nav>
+</nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 2 - TEST</h1>
+<h1 class="title">Day 2 - Web Scraping</h1>
 </div>
 
 
@@ -146,8 +234,650 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Web scraping is a technique used to extract data from websites and organize it into a structured format for further analysis or use. It is an essential tool for data scientists, researchers, and businesses that rely on data from the web. There are two main approaches to web scraping: with and without an Application Programming Interface (API)</p>
+<p><strong>Static Websites vs.&nbsp;Dynamic Websites</strong></p>
+<p>Before diving into web scraping, it’s important to understand the difference between static and dynamic websites. Static websites are traditional websites that store all their content in an HTML document and present it when a request is made. The content of a static website is fixed and does not change unless the website is updated. On the other hand, dynamic websites use JavaScript to generate content on the fly, making them more interactive and responsive. This distinction is crucial because the approach to web scraping may differ depending on whether the website is static or dynamic.</p>
+<p><strong>Web Scraping without API</strong></p>
+<p>Web scraping without an API involves directly accessing and extracting data from the HTML code of a website. This approach is suitable for static websites, where the content is fixed and can be accessed without any additional processing. Web scraping tools, such as web scrapers, are used to automate the data extraction process, making it faster and more efficient than manual copy-pasting.</p>
+<p><strong>Web Scraping with API</strong></p>
+<p>Web scraping with an API involves using a set of definitions and communication protocols that connect a computer to a web server, allowing the user to access and extract data from a website. APIs provide direct access to specific data, often in a structured format like XML or JSON, making it easier to process and analyze. However, API access may be limited or costly, and not all websites offer APIs for data extraction.In summary, web scraping is a powerful technique for extracting data from websites, with different approaches depending on whether the website is static or dynamic and whether an API is available. As an empirical accounting professor, understanding these concepts will help you teach your students how to effectively scrape data from various websites for their research and analysis.</p>
+</section>
+<section id="webscraping-without-api" class="level1 page-columns page-full">
+<h1>Webscraping without API</h1>
+<p>In this section we will download information and documents from <a href="https://www.annualreports.com/"><strong>https://www.annualreports.com</strong></a>. Getting data from this website is exemplary for getting information from the web, where we don’t have an API (Application Programming Interface) access.</p>
+<section id="loading-libraries" class="level2">
+<h2 class="anchored" data-anchor-id="loading-libraries">Loading Libraries</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+v dplyr     1.1.2     v readr     2.1.4
+v forcats   1.0.0     v stringr   1.5.0
+v ggplot2   3.4.3     v tibble    3.2.1
+v lubridate 1.9.2     v tidyr     1.3.0
+v purrr     1.0.2     
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter() masks stats::filter()
+x dplyr::lag()    masks stats::lag()
+i Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'rvest'
+
+The following object is masked from 'package:readr':
+
+    guess_encoding</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(robotstxt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="task-1-understanding-the-website" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="task-1-understanding-the-website">Task 1: Understanding the Website</h2>
+<p><strong>Objective</strong>: Before we start scraping a website, it’s crucial to understand its structure and any rules or restrictions it might have for web scrapers. This task will guide you through the process of examining the website and its <strong><code>robots.txt</code></strong> file.</p>
+<section id="step-1-visit-the-website" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="step-1-visit-the-website">Step 1: Visit the Website</h3>
+<p>Open your web browser and navigate to <a href="https://www.annualreports.com/"><strong>https://www.annualreports.com</strong></a>. Familiarize yourself with its layout, content, and navigation. This will give you a visual understanding of where the data you want to scrape is located.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="..\img/AnnualReportStartPage.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption margin-caption">AnnualReport.com Startpage</figcaption>
+</figure>
+</div>
+</section>
+<section id="step-2-check-the-robots.txt-file" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-check-the-robots.txt-file">Step 2: Check the <strong><code>robots.txt</code></strong> File</h3>
+<p>Every website may have a <strong><code>robots.txt</code></strong> file. This file provides rules about which parts of the website can be accessed and scraped by web robots. It’s essential to respect these rules to avoid any legal issues or getting banned from accessing the website.</p>
+<p>In the script, the following code checks the <strong><code>robots.txt</code></strong> file of the website:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>robot_ <span class="ot">&lt;-</span> robotstxt<span class="sc">::</span><span class="fu">robotstxt</span>(<span class="st">"https://www.annualreports.com"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>robot_<span class="sc">$</span>crawl_delay</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        field     useragent value
+1 Crawl-delay    semrushbot    15
+2 Crawl-delay SemrushBot-BA    15
+3 Crawl-delay        dotbot    10
+4 Crawl-delay       bingbot    10
+5 Crawl-delay     googlebot     1
+6 Crawl-delay             *    10</code></pre>
+</div>
+</div>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><p>The <strong><code>robotstxt::robotstxt()</code></strong> function fetches the <strong><code>robots.txt</code></strong> file from the website.</p></li>
+<li><p><strong><code>robot_$crawl_delay</code></strong> checks if there’s a specified delay between requests. This delay is recommended to avoid overloading the server with rapid, consecutive requests.</p></li>
+</ul>
+</section>
+<section id="step-3-analyze-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-analyze-the-results">Step 3: Analyze the Results</h3>
+<p>If the <strong><code>crawl_delay</code></strong> value is provided, it’s a good practice to incorporate this delay in your scraping script. This ensures you’re sending requests at a rate the website server is comfortable with (since it is very long 10s, we will reduce this time for this class a bit).</p>
+</section>
+</section>
+<section id="task-2-scrape-a-list-of-all-companies-on-annualreport.com" class="level2">
+<h2 class="anchored" data-anchor-id="task-2-scrape-a-list-of-all-companies-on-annualreport.com">Task 2: Scrape a list of all companies on annualreport.com</h2>
+<p><strong>Objective</strong>: After understanding the basics of the website in Task 1, the next step is to extract a list of companies from the website. This task will guide you through creating a function to scrape company details from <strong><code>annualreport.com</code></strong>.</p>
+<section id="step-1-identify-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-identify-the-data">Step 1: Identify the Data</h3>
+<p>Before writing the function, visit <a href="https://www.annualreports.com/"><strong>https://www.annualreports.com</strong></a> and identify where the company details are located. Notice the structure and patterns of the data, such as company names, links, industry names, and sector names.</p>
+</section>
+<section id="step-2-write-the-get_companies-function" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-write-the-get_companies-function">Step 2: Write the <code>get_companies</code> Function</h3>
+<p>Your task is to write a function named <strong><code>get_companies</code></strong> that will retrieve the company details from the website.</p>
+<p><strong>Input</strong>:</p>
+<ul>
+<li><strong><code>.n</code></strong>: A numeric value indicating the maximum number of companies to retrieve. Default is <strong><code>Inf</code></strong> (meaning it will try to retrieve all companies).</li>
+</ul>
+<p><strong>Output</strong>: A dataframe with the following columns:</p>
+<ul>
+<li><p><strong><code>company_name</code></strong>: The name of the company.</p></li>
+<li><p><strong><code>company_link</code></strong>: The link to the company’s page on <strong><code>annualreport.com</code></strong>.</p></li>
+<li><p><strong><code>industry_name</code></strong>: The industry in which the company operates.</p></li>
+<li><p><strong><code>sector_name</code></strong>: The sector in which the company operates.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>get_companies <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">.progress =</span> <span class="cn">TRUE</span>, <span class="at">.n =</span> <span class="cn">Inf</span>) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="step-3-test-the-function" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-test-the-function">Step 3: Test the Function</h3>
+<p>After writing the function, test it by retrieving a limited number of companies to ensure it works correctly. For instance, you can retrieve the details of the first 100 companies using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tab_companies <span class="ot">&lt;-</span> <span class="fu">get_companies</span>(<span class="at">.n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> ============================&gt;--   92% |  ETA:  0s</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tab_companies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 93 x 5
+   company_id                company_name company_link industry_name sector_name
+   &lt;chr&gt;                     &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      
+ 1 aeris-environmental       Aeris Envir~ https://www~ "Pollution &amp;~ Industrial~
+ 2 scpharmaceuticals-inc     scPharmaceu~ https://www~ "Biotechnolo~ Healthcare 
+ 3 us-concrete-inc           U.S. Concre~ https://www~ "Cement"      Industrial~
+ 4 1-800-flowerscom          1-800-FLOWE~ https://www~ "Specialty R~ Services   
+ 5 10x-genomics-inc          10x Genomic~ https://www~ "Healthcare ~ Healthcare 
+ 6 111-inc                   111, Inc.    https://www~ ""            Healthcare 
+ 7 degree                    1414 Degrees https://www~ ""            Utilities  
+ 8 180-life-sciences-corp    180 Life Sc~ https://www~ "Biotechnolo~ Healthcare 
+ 9 1847-holdings-llc         1847 Holdin~ https://www~ "Conglomerat~ Industrial~
+10 1895-bancorp-of-wisconsi~ 1895 Bancor~ https://www~ "Financial S~ Financial  
+# i 83 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-review-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-review-the-results">Step 4: Review the Results</h3>
+<p>Examine the <strong><code>tab_companies</code></strong> dataframe to ensure the data has been scraped correctly. Check if the company names, links, industry names, and sector names are correctly populated.</p>
+</section>
+</section>
+<section id="download-raw-htmls" class="level2">
+<h2 class="anchored" data-anchor-id="download-raw-htmls">Download Raw HTMLs</h2>
+<section id="introduction-1" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-1">Introduction</h3>
+<p>When web scraping, it’s often beneficial to download and store the raw HTML content of the web pages locally. This approach has several advantages:</p>
+<ol type="1">
+<li><p><strong>Reduced Server Load</strong>: By saving the HTML locally, you avoid sending repeated requests to the website, which can overload their server or get your IP address banned.</p></li>
+<li><p><strong>Offline Access</strong>: Once downloaded, you can process the data without an active internet connection.</p></li>
+<li><p><strong>Consistency</strong>: The content of websites can change over time. By saving the HTML, you ensure you’re always working with the same version of the data.</p></li>
+</ol>
+</section>
+<section id="functions" class="level3">
+<h3 class="anchored" data-anchor-id="functions">Functions</h3>
+<section id="save_raw_htmls" class="level4">
+<h4 class="anchored" data-anchor-id="save_raw_htmls">1. <code>save_raw_htmls()</code></h4>
+<p><strong>Purpose</strong>: This function downloads and saves the HTML content of a specified webpage to a local directory.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><p><strong><code>.url</code></strong>: The URL of the webpage you want to download.</p></li>
+<li><p><strong><code>.dir</code></strong>: The directory where you want to save the downloaded HTML.</p></li>
+<li><p><strong><code>.format</code></strong>: The format in which to save the HTML. It can be either <strong><code>.fst</code></strong> (a dataframe format) or <strong><code>.html</code></strong> (standard HTML format). The <strong><code>.fst</code></strong> format can be advantageous because it allows for faster read/write operations and can store data in a more compressed form.</p></li>
+<li><p><strong><code>.wait</code></strong>: The time (in seconds) to wait between requests. This is to ensure you’re not sending requests too quickly, which could be seen as a potential attack on the server.</p></li>
+</ul>
+<p><strong>Output</strong>: The function saves the HTML content to the specified directory and also creates a log file. This log file tracks details about the download, such as any errors encountered, the time taken, etc.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>save_raw_htmls <span class="ot">&lt;-</span> <span class="cf">function</span>(.url, .dir, <span class="at">.format =</span> <span class="fu">c</span>(<span class="st">".fst"</span>, <span class="st">".html"</span>), <span class="at">.wait =</span> <span class="dv">1</span>) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  format_ <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(.format, <span class="fu">c</span>(<span class="st">".fst"</span>, <span class="st">".html"</span>))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  id_ <span class="ot">&lt;-</span> <span class="fu">basename</span>(.url)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  dir_ <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_create</span>(<span class="fu">file.path</span>(.dir, <span class="fu">gsub</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">."</span>, <span class="st">""</span>, format_)))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  fil_ <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dir_, <span class="fu">paste0</span>(id_, format_))</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(fil_)) {</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  tab_log_ <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">company_id =</span> id_,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">company_link =</span> .url,</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">format =</span> .format,</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> fil_,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">err =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">err_msg =</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="cn">NA_real_</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>      start_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>      html_ <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(.url)</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>      end_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(.wait)</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> tab_log_ <span class="sc">%&gt;%</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>          <span class="at">start_time =</span> start_time_,</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>          <span class="at">time =</span> <span class="fu">difftime</span>(end_time_, start_time_, <span class="at">units =</span> <span class="st">"secs"</span>)</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(tab_log_, <span class="at">err =</span> <span class="cn">TRUE</span>, <span class="at">err_msg =</span> e<span class="sc">$</span>message)</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab_log_)</span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (format_ <span class="sc">==</span> <span class="st">".fst"</span>) {</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>    fst<span class="sc">::</span><span class="fu">write_fst</span>(tibble<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">company_id =</span> id_, <span class="at">html =</span> <span class="fu">as.character</span>(html_)), fil_, <span class="dv">100</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write</span>(<span class="fu">as.character</span>(html_), fil_)</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="fu">file.path</span>(.dir, <span class="st">"log.csv"</span>))) {</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, <span class="fu">file.path</span>(.dir, <span class="st">"log.csv"</span>), <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>)</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, <span class="fu">file.path</span>(.dir, <span class="st">"log.csv"</span>), <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="read_raw_html" class="level4">
+<h4 class="anchored" data-anchor-id="read_raw_html">2. <code>read_raw_html()</code></h4>
+<p><strong>Purpose</strong>: This function reads the locally stored HTML content and returns it as a node object, which can be further processed using functions from the <strong><code>rvest</code></strong> package.</p>
+<p><strong>Parameters</strong>:</p>
+<ul>
+<li><p><strong><code>.path</code></strong>: The path to the locally stored HTML file.</p></li>
+<li><p><strong><code>.browse</code></strong>: A logical value. If set to <strong><code>TRUE</code></strong>, the function will also open the HTML in your default web browser. This can be useful for visually inspecting the content.</p></li>
+</ul>
+<p><strong>Output</strong>: A node object containing the HTML content, which can be further processed or parsed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>read_raw_html <span class="ot">&lt;-</span> <span class="cf">function</span>(.path, <span class="at">.browse =</span> <span class="cn">FALSE</span>) {</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (tools<span class="sc">::</span><span class="fu">file_ext</span>(.path) <span class="sc">==</span> <span class="st">"fst"</span>) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    html_ <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(fst<span class="sc">::</span><span class="fu">read_fst</span>(.path, <span class="st">"html"</span>)[[<span class="st">"html"</span>]])</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    html_ <span class="ot">&lt;-</span> rvest<span class="sc">::</span><span class="fu">read_html</span>(.url)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (.browse) {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    temp_file_ <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".html"</span>)</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write</span>(<span class="fu">as.character</span>(html_), temp_file_)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">browseURL</span>(temp_file_)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(html_)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="usage-tips" class="level3">
+<h3 class="anchored" data-anchor-id="usage-tips">Usage Tips</h3>
+<ol type="1">
+<li><p><strong>Respect <code>robots.txt</code></strong>: Before using the <strong><code>save_raw_htmls()</code></strong> function, ensure you’ve checked the website’s <strong><code>robots.txt</code></strong> file to ensure you’re allowed to scrape it.</p></li>
+<li><p><strong>Space Out Requests</strong>: Use the <strong><code>.wait</code></strong> parameter in <strong><code>save_raw_htmls()</code></strong> to ensure you’re not sending requests too quickly.</p></li>
+<li><p><strong>Inspect Locally Saved HTML</strong>: Use the <strong><code>.browse</code></strong> parameter in <strong><code>read_raw_html()</code></strong> to open the saved HTML in your browser. This can help you visually inspect the content and ensure it was saved correctly.</p></li>
+</ol>
+<p>Remember, web scraping requires a balance between gathering the data you need and respecting the website’s server and terms of use. Always scrape responsibly!</p>
+</section>
+<section id="save-htmls" class="level3">
+<h3 class="anchored" data-anchor-id="save-htmls">Save HTMLs</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">walk</span>(tab_companies<span class="sc">$</span>company_link, <span class="sc">~</span> <span class="fu">save_raw_htmls</span>(.x, <span class="st">"day2/raw_html"</span>, <span class="st">".fst"</span>), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># purrr::walk(tab_companies$company_link, ~ save_raw_htmls(.x, "day2/raw_html", ".html"), .progress = TRUE)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="read-the-log-file" class="level3">
+<h3 class="anchored" data-anchor-id="read-the-log-file">Read the log file</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>tab_log_companies <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_delim</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"day2/raw_html/log.csv"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">delim =</span> <span class="st">"|"</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(format <span class="sc">==</span> <span class="st">".fst"</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>tab_log_companies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 93 x 8
+   company_id  company_link format path  err   err_msg start_time           time
+   &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt; &lt;lgl&gt; &lt;lgl&gt;   &lt;dttm&gt;              &lt;dbl&gt;
+ 1 aeris-envi~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:30 0.476
+ 2 scpharmace~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:31 1.14 
+ 3 us-concret~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:33 1.10 
+ 4 1-800-flow~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:36 0.415
+ 5 10x-genomi~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:38 1.06 
+ 6 111-inc     https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:40 1.15 
+ 7 degree      https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:43 0.507
+ 8 180-life-s~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:44 1.09 
+ 9 1847-holdi~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:46 1.09 
+10 1895-banco~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:48 1.10 
+# i 83 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_raw_html</span>(tab_log_companies<span class="sc">$</span>path[<span class="dv">1</span>], <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{html_document}
+&lt;html lang="en"&gt;
+[1] &lt;head&gt;\n&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8 ...
+[2] &lt;body&gt;\n&lt;div class="container"&gt;\n        &lt;header class="header"&gt;&lt;div clas ...</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="task-3-scrape-all-information-for-a-single-company" class="level2">
+<h2 class="anchored" data-anchor-id="task-3-scrape-all-information-for-a-single-company">Task 3: Scrape all information for a single company</h2>
+<p><strong>Objective</strong>: After successfully scraping a list of companies, the next step is to delve deeper and extract detailed information for each individual company. This task will guide you through creating a function to scrape detailed company information from <strong><code>annualreport.com</code></strong>.</p>
+<section id="step-1-identify-the-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-identify-the-data-1">Step 1: Identify the Data</h3>
+<p>Before diving into the function, visit a specific company’s page on <a href="https://www.annualreports.com/"><strong>https://www.annualreports.com</strong></a>. Familiarize yourself with the layout and the various pieces of information available, such as the company name, ticker name, exchange name, number of employees, location, description, website, and social media links.</p>
+</section>
+<section id="step-2-write-the-get_company_info-function" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-write-the-get_company_info-function">Step 2: Write the <code>get_company_info</code> Function</h3>
+<p>Your task is to write a function named <strong><code>get_company_info</code></strong> that will retrieve detailed information about a company.</p>
+<p><strong>Input</strong>:</p>
+<ul>
+<li><strong><code>.html</code></strong>: A node object containing the HTML content of a company’s page. This object can be obtained using the <strong><code>read_html</code></strong> function from the <strong><code>rvest</code></strong> package.</li>
+</ul>
+<p><strong>Output</strong>: A dataframe with the following columns:</p>
+<ul>
+<li><p><strong><code>vendor_name</code></strong>: The name of the company.</p></li>
+<li><p><strong><code>ticker_name</code></strong>: The ticker symbol of the company.</p></li>
+<li><p><strong><code>exchange_name</code></strong>: The stock exchange where the company is listed.</p></li>
+<li><p><strong><code>employees</code></strong>: The number of employees in the company.</p></li>
+<li><p><strong><code>location</code></strong>: The location or headquarters of the company.</p></li>
+<li><p><strong><code>description</code></strong>: A brief description of the company.</p></li>
+<li><p><strong><code>company_website</code></strong>: The official website of the company.</p></li>
+<li><p><strong><code>facebook</code></strong>: The company’s Facebook page link (if available).</p></li>
+<li><p><strong><code>youtube</code></strong>: The company’s YouTube channel link (if available).</p></li>
+<li><p><strong><code>linkedin</code></strong>: The company’s LinkedIn profile link (if available).</p></li>
+<li><p><strong><code>twitter</code></strong>: The company’s Twitter handle link (if available).</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>get_company_info <span class="ot">&lt;-</span> <span class="cf">function</span>(.html) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="step-3-test-the-function-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-test-the-function-1">Step 3: Test the Function</h3>
+<p>After writing the function, test it by passing the HTML content of a specific company’s page to ensure it works correctly. For instance, you can retrieve the details of a company using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>company_details <span class="ot">&lt;-</span> <span class="fu">get_company_info</span>(<span class="fu">read_raw_html</span>(tab_log_companies<span class="sc">$</span>path[<span class="dv">1</span>]))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>company_details</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 x 11
+  vendor_name         ticker_name exchange_name   employees location description
+  &lt;chr&gt;               &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      
+1 Aeris Environmental AEI         Exchange ASX M~ 11-50 Em~ Based i~ Aeris Envi~
+# i 5 more variables: company_website &lt;chr&gt;, facebook &lt;chr&gt;, youtube &lt;chr&gt;,
+#   linkedin &lt;chr&gt;, twitter &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-review-the-results-1" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-review-the-results-1">Step 4: Review the Results</h3>
+<p>Examine the <strong><code>company_details</code></strong> dataframe to ensure the data has been scraped correctly. Check if all the details like company name, ticker name, exchange name, etc., are correctly populated.</p>
+</section>
+</section>
+<section id="task-4-scrape-the-annual-reports-links" class="level2">
+<h2 class="anchored" data-anchor-id="task-4-scrape-the-annual-reports-links">Task 4: Scrape the Annual Reports Links</h2>
+<p><strong>Objective</strong>: After extracting detailed information about individual companies, the next logical step is to gather their annual reports. This task will guide you through creating a function to scrape links to the annual reports of companies from <strong><code>annualreport.com</code></strong>.</p>
+<section id="step-1-identify-the-data-2" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-identify-the-data-2">Step 1: Identify the Data</h3>
+<p>Before diving into the function, visit a specific company’s page on <a href="https://www.annualreports.com/"><strong>https://www.annualreports.com</strong></a>. Familiarize yourself with the section that contains links to the company’s annual reports. Notice the structure and patterns of the data, such as the year of the report and the download link.</p>
+</section>
+<section id="step-2-write-the-get_company_reports-function" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-write-the-get_company_reports-function">Step 2: Write the <code>get_company_reports</code> Function</h3>
+<p>Your task is to write a function named <strong><code>get_company_reports</code></strong> that will retrieve links to the annual reports of a company.</p>
+<p><strong>Input</strong>:</p>
+<ul>
+<li><strong><code>.html</code></strong>: A node object containing the HTML content of a company’s page. This object can be obtained using the <strong><code>read_html</code></strong> function from the <strong><code>rvest</code></strong> package.</li>
+</ul>
+<p><strong>Output</strong>: A dataframe with the following columns:</p>
+<ul>
+<li><p><strong><code>heading</code></strong>: The title or heading of the annual report (e.g., “2022 Annual Report”).</p></li>
+<li><p><strong><code>year</code></strong>: The year of the annual report.</p></li>
+<li><p><strong><code>report_link</code></strong>: The direct link to download the annual report.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>get_company_reports <span class="ot">&lt;-</span> <span class="cf">function</span>(.html) {</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+</section>
+<section id="step-3-test-the-function-2" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-test-the-function-2">Step 3: Test the Function</h3>
+<p>After writing the function, test it by passing the HTML content of a specific company’s page to ensure it works correctly. For instance, you can retrieve the links to the annual reports of a company using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>report_links <span class="ot">&lt;-</span> <span class="fu">get_company_reports</span>(<span class="fu">read_raw_html</span>(tab_log_companies<span class="sc">$</span>path[<span class="dv">1</span>]))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>report_links</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 3
+  heading             year report_link                                          
+  &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;                                                
+1 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepor~
+2 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepor~
+3 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepor~
+4 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepor~
+5 2017 Annual Report  2017 https://www.annualreports.com/HostedData/AnnualRepor~
+6 2016 Annual Report  2016 https://www.annualreports.com/HostedData/AnnualRepor~</code></pre>
+</div>
+</div>
+</section>
+<section id="step-4-review-the-results-2" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-review-the-results-2">Step 4: Review the Results</h3>
+<p>Examine the <strong><code>report_links</code></strong> dataframe to ensure the data has been scraped correctly. Check if all the details like the heading, year, and report link are correctly populated.</p>
+</section>
+</section>
+<section id="get-company-information-and-report-links" class="level2">
+<h2 class="anchored" data-anchor-id="get-company-information-and-report-links">Get Company Information and Report Links</h2>
+<p>In this section, you’re using the previously defined functions to extract detailed information about each company and the links to their annual reports.</p>
+<p><strong>Explanation</strong>:</p>
+<ol type="1">
+<li><p><strong><code>purrr::map</code></strong>: This function applies the <strong><code>get_company_info</code></strong> function to each path in <strong><code>tab_log_companies$path</code></strong>. The <strong><code>~</code></strong> symbol is used to define a formula where <strong><code>.x</code></strong> represents each individual path.</p></li>
+<li><p><strong><code>read_raw_html(.x)</code></strong>: For each path, the HTML content is read and passed to the <strong><code>get_company_info</code></strong> function.</p></li>
+<li><p><strong><code>dplyr::bind_rows</code></strong>: After extracting the information for each company, the results are combined into a single dataframe.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tab_companies_info <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(tab_log_companies<span class="sc">$</span>path, <span class="sc">~</span> <span class="fu">get_company_info</span>(<span class="fu">read_raw_html</span>(.x)), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tab_companies_info <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(tab_companies_info)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tab_companies_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 77 x 11
+   vendor_name          ticker_name exchange_name employees location description
+   &lt;chr&gt;                &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      
+ 1 Aeris Environmental  AEI         Exchange ASX~ 11-50 Em~ Based i~ "Aeris Env~
+ 2 scPharmaceuticals I~ SCPH        Exchange NAS~ 11-50 Em~ Based i~ "scPharmac~
+ 3 U.S. Concrete, Inc.  RMIX        Exchange NAS~ 1001-500~ Based i~ "U.S. Conc~
+ 4 1-800-FLOWERS.COM    FLWS        Exchange NAS~ 1001-500~ Based i~ "1-800-Flo~
+ 5 10x Genomics, Inc.   TXG         Exchange NAS~ 501-1000~ Based i~ "10x Genom~
+ 6 111, Inc.            YI          Exchange NAS~ 1001-500~ Based i~ "111, Inc.~
+ 7 1414 Degrees         14D         Exchange ASX~ 11-50 Em~ Based i~ "1414 Degr~
+ 8 180 Life Sciences C~ ATNF        Exchange NAS~ 1-10 Emp~ Based i~ "180 Life ~
+ 9 1847 Holdings LLC    EFSH        Exchange NYS~ 1-10 Emp~ Based i~ "1847 Hold~
+10 1895 Bancorp of Wis~ BCOW        Exchange NAS~ 51-200 E~ Based i~ "1895 Banc~
+# i 67 more rows
+# i 5 more variables: company_website &lt;chr&gt;, facebook &lt;chr&gt;, youtube &lt;chr&gt;,
+#   linkedin &lt;chr&gt;, twitter &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li>This is similar to the previous block but focuses on extracting the annual report links for each company.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tab_company_reports <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(tab_log_companies<span class="sc">$</span>path, <span class="sc">~</span> <span class="fu">get_company_reports</span>(<span class="fu">read_raw_html</span>(.x)), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> =======================&gt;-------   77% |  ETA:  1s</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tab_company_reports <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(tab_company_reports)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>tab_company_reports</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 842 x 3
+   heading             year report_link                                         
+   &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;                                               
+ 1 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepo~
+ 2 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepo~
+ 3 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepo~
+ 4 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepo~
+ 5 2017 Annual Report  2017 https://www.annualreports.com/HostedData/AnnualRepo~
+ 6 2016 Annual Report  2016 https://www.annualreports.com/HostedData/AnnualRepo~
+ 7 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepo~
+ 8 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepo~
+ 9 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepo~
+10 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepo~
+# i 832 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="download-the-annual-reports" class="level2">
+<h2 class="anchored" data-anchor-id="download-the-annual-reports">Download the Annual Reports</h2>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><p>This function, <strong><code>download_pdf</code></strong>, is designed to download a PDF from a given URL and save it to a specified directory.</p></li>
+<li><p>It first checks if the file already exists in the directory. If it does, the function returns a message and doesn’t download the file again.</p></li>
+<li><p>If the file doesn’t exist, the function attempts to download the PDF. If the download is successful, details about the download (like the start time and duration) are logged in a tibble.</p></li>
+<li><p>If there’s an error during the download (e.g., the URL doesn’t point to a PDF), the error is caught and logged.</p></li>
+<li><p>The function also writes a log to a CSV file, which can be useful for tracking and debugging.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>download_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(.url, .dir, <span class="at">.wait =</span> <span class="dv">1</span>) {</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create the directory if it doesn't exist</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  dir_ <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_create</span>(.dir, <span class="st">"pdf"</span>)</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract the filename from the URL</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  id_ <span class="ot">&lt;-</span> <span class="fu">basename</span>(.url)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  fil_ <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dir_, id_)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the file already exists</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(fil_)) {</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a log tibble</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  tab_log_ <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">file_id =</span> id_,</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">file_link =</span> .url,</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> fil_,</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">err =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">err_msg =</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="cn">NA_real_</span></span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Try to download the PDF</span></span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>      start_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>      response <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(.url, httr<span class="sc">::</span><span class="fu">write_disk</span>(fil_, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Check if the response content type is a PDF</span></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (httr<span class="sc">::</span><span class="fu">http_type</span>(response) <span class="sc">!=</span> <span class="st">"application/pdf"</span>) {</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"The URL does not point to a PDF."</span>)</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>      end_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(.wait)</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> tab_log_ <span class="sc">%&gt;%</span></span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">start_time =</span> start_time_,</span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">time =</span> <span class="fu">difftime</span>(end_time_, start_time_, <span class="at">units =</span> <span class="st">"secs"</span>)</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(tab_log_, <span class="at">err =</span> <span class="cn">TRUE</span>, <span class="at">err_msg =</span> e<span class="sc">$</span>message)</span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab_log_)</span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write the log to a CSV file</span></span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a>  log_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(.dir, <span class="st">"log.csv"</span>)</span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(log_file)) {</span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, log_file, <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>)</span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, log_file, <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Download the first 100 reports</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">walk</span>(tab_company_reports<span class="sc">$</span>report_link[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>], <span class="sc">~</span> <span class="fu">download_pdf</span>(.x, <span class="st">"day2/pdfs"</span>), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Explanation</strong>:</p>
+<ul>
+<li><p><strong><code>purrr::walk</code></strong> is used to apply the <strong><code>download_pdf</code></strong> function to the first 100 report links in <strong><code>tab_company_reports</code></strong>.</p></li>
+<li><p>Each report link is passed as <strong><code>.x</code></strong> to the <strong><code>download_pdf</code></strong> function, which then attempts to download the PDF and save it to the “day2/pdfs” directory.</p></li>
+<li><p>The <strong><code>.progress = TRUE</code></strong> argument provides a progress bar, which is helpful when downloading multiple files.</p></li>
+</ul>
+</section>
+</section>
+<section id="webscraping-with-api" class="level1">
+<h1>Webscraping with API</h1>
+<p><strong>Task 1: Generate a Function to Download the SEC Master Index</strong></p>
+<ol type="1">
+<li><p>Navigate to the <a href="https://www.sec.gov/edgar/sec-api-documentation"><strong>SEC EDGAR API documentation</strong></a>.</p></li>
+<li><p>Ask your AI assistant to help you write a function in R that downloads the SEC master index for a specific year and quarter based on the API FAQ.</p></li>
+<li><p>Test the function by downloading the master index for a year and quarter of your choice.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>download_sec_master_index <span class="ot">&lt;-</span> <span class="cf">function</span>(.year, .quarter, .dir) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "day2/sec/master/master_2022_QTR1.idx"</code></pre>
+</div>
+</div>
+<p><strong>Task 2: Inspect and Parse the Downloaded File</strong></p>
+<ol type="1">
+<li><p>Open the downloaded master index file and inspect its contents. Identify the structure and the data it contains.</p></li>
+<li><p>Copy a small section (about 10-15 lines) of the master index.</p></li>
+<li><p>Ask your AI assistant to parse the copied section into a dataframe in R.</p></li>
+<li><p>Inspect the dataframe to ensure the data has been parsed correctly.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>read_master_idx <span class="ot">&lt;-</span> <span class="cf">function</span>(.path) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 356,328 x 5
+   cik     company_name           form_type date_filed filename                 
+   &lt;chr&gt;   &lt;chr&gt;                  &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;                    
+ 1 1000045 NICHOLAS FINANCIAL INC 10-Q      2022-02-09 edgar/data/1000045/00009~
+ 2 1000045 NICHOLAS FINANCIAL INC 4         2022-02-03 edgar/data/1000045/00010~
+ 3 1000045 NICHOLAS FINANCIAL INC 4         2022-02-03 edgar/data/1000045/00010~
+ 4 1000045 NICHOLAS FINANCIAL INC 4         2022-02-11 edgar/data/1000045/00013~
+ 5 1000045 NICHOLAS FINANCIAL INC 4         2022-02-18 edgar/data/1000045/00013~
+ 6 1000045 NICHOLAS FINANCIAL INC 8-K       2022-01-13 edgar/data/1000045/00009~
+ 7 1000045 NICHOLAS FINANCIAL INC 8-K       2022-01-31 edgar/data/1000045/00009~
+ 8 1000045 NICHOLAS FINANCIAL INC SC 13G/A  2022-02-09 edgar/data/1000045/00011~
+ 9 1000045 NICHOLAS FINANCIAL INC SC 13G    2022-02-08 edgar/data/1000045/00003~
+10 1000045 NICHOLAS FINANCIAL INC SC 13G    2022-02-11 edgar/data/1000045/00010~
+# i 356,318 more rows</code></pre>
+</div>
+</div>
+<p><strong>Task 3: Download a Full Submission Text File</strong></p>
+<ol type="1">
+<li><p>From the parsed dataframe in Task 2, identify a CIK (Central Index Key) and its associated year number for any company.</p></li>
+<li><p>Ask your AI assistant to help you write a function in R that downloads a full submission 10-K text file using the CIK and year ( to filter that dataframe) and downloads the full submission text file.</p></li>
+<li><p>Test the function by downloading the full submission text file for the identified company.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>download_full_submision_file <span class="ot">&lt;-</span> <span class="cf">function</span>(.tab, .cik, .year, .dir) {</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<p><strong>Conclusion:</strong></p>
+<p>In this exercise, you’ve learned how to leverage the capabilities of an AI assistant to interact with the SEC EDGAR database. By combining the power of AI with programming, you can efficiently access, parse, and analyze vast amounts of financial data. This approach not only simplifies the data extraction process but also opens up opportunities for more advanced financial analyses.</p>
+<p><strong>Bonus Challenge:</strong></p>
+<ol type="1">
+<li>Ask your AI assistant to help you extract specific sections (e.g., “Item 1A. Risk Factors”) from the downloaded submission text files.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>extract_section <span class="ot">&lt;-</span> <span class="cf">function</span>(.path, <span class="at">.section =</span> <span class="st">"Item 1A. Risk Factors"</span>) {</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Your Code Here</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
