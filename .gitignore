@@ -2,6 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-renv
+renv/library
 exercises/day2/
 /.quarto/
