@@ -75,4 +75,25 @@ renv::init()
 
 **Type 1 and click enter**
 
-This should now install all necessary dependencies onto you computer (depending on your internet connection and computer specs this process might take 5 minutes or more)
+This should now install all necessary dependencies onto you computer (depending on your internet connection and computer specs this process might take 5 minutes or more). If you encounter any error during the installation, just try to reintsall the package using: `install.packages("PACKAGENAME)`.
+
+3.  Finish initialization with the following command:
+
+```{r}
+#| eval: false
+renv::restore()
+```
+
+**You should see the following output:**
+
+*`It looks like you've called renv::restore() in a project that hasn't been activated yet. How would you like to proceed?`*
+
+*`1: Activate the project and use the project library.`*
+
+*`2: Do not activate the project and use the current library paths.`*
+
+*`3: Cancel and resolve the situation another way.`*
+
+*`Selection:`*
+
+**Type 1 and click enter**
