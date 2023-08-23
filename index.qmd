@@ -57,23 +57,22 @@ right!**
 Navigate through the sessions using the links in this table or the drop-down menus atop
 the page.
 
-+---------------------+------------------------------------------------------------------+
-| Day                 | Description                                                      |
-+:====================+:=================================================================+
-| Day 1               | [**Building an Excel Business Case**](exercises/day1.qmd)        |
-|                     |                                                                  |
-|                     | Construct a concise business case in Excel, evaluating a         |
-|                     | business decisions using metrics like the **Contribution         |
-|                     | Margin**                                                         |
-+---------------------+------------------------------------------------------------------+
-| Day 2               | [**Getting Data from the Web**](exercises/day2.qmd)              |
-|                     |                                                                  |
-|                     | Master web scraping in scenarios with and without an API.        |
-|                     |                                                                  |
-|                     | -   <http://www.annualreport.com/>                               |
-|                     |                                                                  |
-|                     | -   <https://www.sec.gov/edgar>                                  |
-+---------------------+------------------------------------------------------------------+
++-------+-------------------------------------------------------------------------------+
+| Day   | Description                                                                   |
++:======+:==============================================================================+
+| Day 1 | [**Building an Excel Business Case**](exercises/day1.qmd)                     |
+|       |                                                                               |
+|       | Construct a concise business case in Excel, evaluating a business decisions   |
+|       | using metrics like the **Contribution Margin**                                |
++-------+-------------------------------------------------------------------------------+
+| Day 2 | [**Getting Data from the Web**](exercises/day2.qmd)                           |
+|       |                                                                               |
+|       | Master web scraping in scenarios with and without an API.                     |
+|       |                                                                               |
+|       | -   <http://www.annualreport.com/>                                            |
+|       |                                                                               |
+|       | -   <https://www.sec.gov/edgar>                                               |
++-------+-------------------------------------------------------------------------------+
 
 ------------------------------------------------------------------------------------------
 
