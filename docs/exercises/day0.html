@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -130,10 +164,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of Contents</h2>
    
   <ul>
-  <li><a href="#setting-up-r-and-rstudio" id="toc-setting-up-r-and-rstudio" class="nav-link active" data-scroll-target="#setting-up-r-and-rstudio">Setting Up R and Rstudio</a>
-  <ul class="collapse">
+  <li><a href="#setting-up-r-and-rstudio" id="toc-setting-up-r-and-rstudio" class="nav-link active" data-scroll-target="#setting-up-r-and-rstudio">Setting Up R and Rstudio</a></li>
   <li><a href="#downloading-the-public-github-repository" id="toc-downloading-the-public-github-repository" class="nav-link" data-scroll-target="#downloading-the-public-github-repository">Downloading the Public GitHub Repository</a></li>
-  </ul></li>
+  <li><a href="#restoring-the-project-from-the-renv-lockfile" id="toc-restoring-the-project-from-the-renv-lockfile" class="nav-link" data-scroll-target="#restoring-the-project-from-the-renv-lockfile">Restoring the Project from the renv Lockfile</a></li>
   </ul>
 </nav>
 </nav>
@@ -163,10 +196,10 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="setting-up-r-and-rstudio" class="level1">
 <h1>Setting Up R and Rstudio</h1>
-<p>R and RStudio installations are needed for our interactive exercises. The setup is intuitive. Kindly follow the <a href="https://rstudio-education.github.io/hopr/starting.html"><strong>instructions</strong></a> to install the necessary components.</p>
-<p><strong>Accessing the Code</strong></p>
-<section id="downloading-the-public-github-repository" class="level3">
-<h3 class="anchored" data-anchor-id="downloading-the-public-github-repository">Downloading the Public GitHub Repository</h3>
+<p>R and RStudio installations are needed for our interactive exercises (I would recommend installing the newest versions of both R and Rstudio). The setup is intuitive. Kindly follow the <a href="https://rstudio-education.github.io/hopr/starting.html"><strong>instructions</strong></a> to install the necessary components.</p>
+</section>
+<section id="downloading-the-public-github-repository" class="level1">
+<h1>Downloading the Public GitHub Repository</h1>
 <ol type="1">
 <li><p><strong>Open the Repository in a Web Browser</strong>:</p>
 <ul>
@@ -195,9 +228,33 @@ ul.task-list li input[type="checkbox"] {
 <li><p>If you have RStudio installed, you can double-click on this <strong><code>.Rproj</code></strong> file to open the project in RStudio. If not, you can still navigate through the folder and open individual R scripts using any text editor or R itself.</p></li>
 </ul></li>
 </ol>
-
-
 </section>
+<section id="restoring-the-project-from-the-renv-lockfile" class="level1">
+<h1>Restoring the Project from the renv Lockfile</h1>
+<p>In this section, we will restore the project’s R packages using the <strong><code>renv.lock</code></strong> file. This ensures that all students have the same package versions for consistency and reproducibility.</p>
+<ol type="1">
+<li>Make sure you have the <strong><code>renv</code></strong> package installed.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"renv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Initialize the renv project with this command:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">init</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>You should see the following output:</strong></p>
+<p><em><code>This project already has a lockfile. What would you like to do?</code></em></p>
+<p><em><code>1: Restore the project from the lockfile.</code></em></p>
+<p><em><code>2: Discard the lockfile and re-initialize the project.</code></em></p>
+<p><em><code>3: Activate the project without snapshotting or installing any packages.</code></em></p>
+<p><em><code>4: Abort project initialization.</code></em></p>
+<p><em><code>Selection:</code></em></p>
+<p><strong>Type 1 and click enter</strong></p>
+<p>This should now install all necessary dependencies onto you computer (depending on your internet connection and computer specs this process might take 5 minutes or more)</p>
+
+
 </section>
 
 </main> <!-- /main -->

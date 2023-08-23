@@ -5,11 +5,9 @@ format: html
 
 # Setting Up R and Rstudio
 
-R and RStudio installations are needed for our interactive exercises. The setup is intuitive. Kindly follow the [**instructions**](https://rstudio-education.github.io/hopr/starting.html) to install the necessary components.
+R and RStudio installations are needed for our interactive exercises (I would recommend installing the newest versions of both R and Rstudio). The setup is intuitive. Kindly follow the [**instructions**](https://rstudio-education.github.io/hopr/starting.html) to install the necessary components.
 
-**Accessing the Code**
-
-### Downloading the Public GitHub Repository
+# Downloading the Public GitHub Repository
 
 1.  **Open the Repository in a Web Browser**:
 
@@ -42,3 +40,39 @@ R and RStudio installations are needed for our interactive exercises. The setup 
     -   Inside, you should find a file with the **`.Rproj`** extension, which represents the R Project.
 
     -   If you have RStudio installed, you can double-click on this **`.Rproj`** file to open the project in RStudio. If not, you can still navigate through the folder and open individual R scripts using any text editor or R itself.
+
+# Restoring the Project from the renv Lockfile
+
+In this section, we will restore the project's R packages using the **`renv.lock`** file. This ensures that all students have the same package versions for consistency and reproducibility.
+
+1.  Make sure you have the **`renv`** package installed.
+
+```{r}
+#| eval: false
+install.packages("renv")
+```
+
+2.  Initialize the renv project with this command:
+
+```{r}
+#| eval: false
+renv::init()
+```
+
+**You should see the following output:**
+
+*`This project already has a lockfile. What would you like to do?`*
+
+*`1: Restore the project from the lockfile.`*
+
+*`2: Discard the lockfile and re-initialize the project.`*
+
+*`3: Activate the project without snapshotting or installing any packages.`*
+
+*`4: Abort project initialization.`*
+
+*`Selection:`*
+
+**Type 1 and click enter**
+
+This should now install all necessary dependencies onto you computer (depending on your internet connection and computer specs this process might take 5 minutes or more)
