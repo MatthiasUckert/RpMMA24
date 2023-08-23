@@ -52,19 +52,6 @@ necessitate further adjustments. The primary goal is understanding, not necessar
 mastering every coding detail. The overarching principle is: **If it's effective, it's
 right!**
 
-# **Setting Up R and Rstudio**
-
-R and RStudio installations are needed for our interactive exercises. The setup is
-intuitive. Kindly follow the
-[**instructions**](https://rstudio-education.github.io/hopr/starting.html) to install the
-necessary components.
-
-**Accessing the Code**
-
-The codebase for our sessions is hosted on my GitHub page:
-[**MatthiasUckert/RpMMA24**](https://github.com/MatthiasUckert/RpMMA24). You can either
-fork the repository to your GitHub account or download the project directly.
-
 # Table of Content
 
 Navigate through the sessions using the links in this table or the drop-down menus atop
