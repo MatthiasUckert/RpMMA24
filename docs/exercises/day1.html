@@ -224,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Today’s complex business environment demands tools that offer both versatility and precision. In this session, we’ll explore three vital financial tasks using the R programming environment:</p>
+<p>In this session, we’ll explore three vital financial tasks using the R programming environment:</p>
 <ol type="1">
 <li><p><strong>Cost Allocation:</strong> Get a granular understanding of how costs disperse across products, emphasizing the allocation of indirect costs.</p></li>
 <li><p><strong>Contribution Margin Analysis:</strong> Examine the profitability of individual products, distinguishing which products significantly impact the bottom line.</p></li>
@@ -240,40 +240,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Cost-Effective:</strong> Being open-source, R is freely available, ensuring businesses don’t incur additional software costs.</p></li>
 </ul>
 <p>By the session’s end, you’ll appreciate not just the theoretical aspects of these techniques but also the practical advantages of implementing them in an open-source environment like R.</p>
-<p>Let’s get started!</p>
 </section>
 <section id="loading-libraries" class="level1">
 <h1>Loading Libraries</h1>
-<p>In this session, we’ll be leveraging various R libraries, each catering to specific tasks and functionalities. Here’s a breakdown of the libraries and their primary uses:</p>
-<p><strong>Data Manipulation and Visualization</strong></p>
-<ul>
-<li><p><strong><code>tidyverse</code></strong>: A collection of packages tailored for data science.</p>
-<ul>
-<li>Includes <strong><code>dplyr</code></strong> for data manipulation, <strong><code>ggplot2</code></strong> for data visualization, <strong><code>readr</code></strong> for reading data, among others.</li>
-</ul></li>
-<li><p><strong><code>janitor</code></strong>: Useful for cleaning data and performing some basic data wrangling tasks.</p></li>
-</ul>
-<p><strong>Data I/O</strong></p>
-<ul>
-<li><strong><code>openxlsx</code></strong>: Specifically designed for reading from and writing to Excel sheets.</li>
-</ul>
-<p><strong>Numeric and Statistical Functions</strong></p>
-<ul>
-<li><p><strong><code>scales</code></strong>: Aids in formatting numbers, especially for data visualization purposes.</p></li>
-<li><p><strong><code>furrr</code></strong>: An offshoot of the <strong><code>purrr</code></strong> package, <strong><code>furrr</code></strong> makes it easy to apply functions in parallel.</p></li>
-</ul>
-<p><strong>Themes and Visualization Enhancements</strong></p>
-<ul>
-<li><strong><code>ggthemes</code></strong>: Provides additional themes and scales for <strong><code>ggplot2</code></strong>, enhancing the aesthetics and readability of plots.</li>
-</ul>
-<p><strong>Miscellaneous</strong></p>
-<ul>
-<li><strong><code>tictoc</code></strong>: Helps in measuring the time taken for code execution, useful for performance tuning.</li>
-</ul>
-<p><strong>Custom Functions</strong></p>
-<ul>
-<li><strong><code>source("additional_functions.R")</code></strong>: Loads user-defined functions from an external R script.</li>
-</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
@@ -411,7 +380,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>tab_cost</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 x 6
+<pre><code># A tibble: 9 × 6
   type     product department    amount distr   range_std
   &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;
 1 Direct   Elite   Material       30000 normal       5000
@@ -561,7 +530,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_cost_allocation_skeleton</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 x 2
+<pre><code># A tibble: 9 × 2
   sign  var                          
   &lt;chr&gt; &lt;chr&gt;                        
 1 " "   Direct Material Costs        
@@ -628,7 +597,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_cost_allocation_table</span>(<span class="at">.tab_cost =</span> tab_cost)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 x 5
+<pre><code># A tibble: 9 × 5
   sign  var                            Total  Elite Premium
   &lt;chr&gt; &lt;chr&gt;                          &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
 1 " "   Direct Material Costs         100000  30000   70000
@@ -646,23 +615,23 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format_table</span>(<span class="fu">get_cost_allocation_table</span>(tab_cost))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="fjvedwqjil" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fjvedwqjil table {
+<div id="ngpftydusa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ngpftydusa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fjvedwqjil thead, #fjvedwqjil tbody, #fjvedwqjil tfoot, #fjvedwqjil tr, #fjvedwqjil td, #fjvedwqjil th {
+#ngpftydusa thead, #ngpftydusa tbody, #ngpftydusa tfoot, #ngpftydusa tr, #ngpftydusa td, #ngpftydusa th {
   border-style: none;
 }
 
-#fjvedwqjil p {
+#ngpftydusa p {
   margin: 0;
   padding: 0;
 }
 
-#fjvedwqjil .gt_table {
+#ngpftydusa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -688,12 +657,12 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-left-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_caption {
+#ngpftydusa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fjvedwqjil .gt_title {
+#ngpftydusa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -705,7 +674,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-width: 0;
 }
 
-#fjvedwqjil .gt_subtitle {
+#ngpftydusa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -717,7 +686,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-top-width: 0;
 }
 
-#fjvedwqjil .gt_heading {
+#ngpftydusa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -729,13 +698,13 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_bottom_border {
+#ngpftydusa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_col_headings {
+#ngpftydusa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -750,7 +719,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_col_heading {
+#ngpftydusa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -770,7 +739,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   overflow-x: hidden;
 }
 
-#fjvedwqjil .gt_column_spanner_outer {
+#ngpftydusa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -782,15 +751,15 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 4px;
 }
 
-#fjvedwqjil .gt_column_spanner_outer:first-child {
+#ngpftydusa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fjvedwqjil .gt_column_spanner_outer:last-child {
+#ngpftydusa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fjvedwqjil .gt_column_spanner {
+#ngpftydusa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -802,11 +771,11 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   width: 100%;
 }
 
-#fjvedwqjil .gt_spanner_row {
+#ngpftydusa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fjvedwqjil .gt_group_heading {
+#ngpftydusa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -832,7 +801,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   text-align: left;
 }
 
-#fjvedwqjil .gt_empty_group_heading {
+#ngpftydusa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -847,15 +816,15 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   vertical-align: middle;
 }
 
-#fjvedwqjil .gt_from_md > :first-child {
+#ngpftydusa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fjvedwqjil .gt_from_md > :last-child {
+#ngpftydusa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fjvedwqjil .gt_row {
+#ngpftydusa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -874,7 +843,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   overflow-x: hidden;
 }
 
-#fjvedwqjil .gt_stub {
+#ngpftydusa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -887,7 +856,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#fjvedwqjil .gt_stub_row_group {
+#ngpftydusa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -901,15 +870,15 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   vertical-align: top;
 }
 
-#fjvedwqjil .gt_row_group_first td {
+#ngpftydusa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fjvedwqjil .gt_row_group_first th {
+#ngpftydusa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fjvedwqjil .gt_summary_row {
+#ngpftydusa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -919,16 +888,16 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#fjvedwqjil .gt_first_summary_row {
+#ngpftydusa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_first_summary_row.thick {
+#ngpftydusa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fjvedwqjil .gt_last_summary_row {
+#ngpftydusa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -938,7 +907,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_grand_summary_row {
+#ngpftydusa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -948,7 +917,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#fjvedwqjil .gt_first_grand_summary_row {
+#ngpftydusa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -958,7 +927,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-top-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_last_grand_summary_row_top {
+#ngpftydusa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -968,11 +937,11 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_striped {
+#ngpftydusa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fjvedwqjil .gt_table_body {
+#ngpftydusa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -981,7 +950,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_footnotes {
+#ngpftydusa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -995,7 +964,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_footnote {
+#ngpftydusa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1004,7 +973,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#fjvedwqjil .gt_sourcenotes {
+#ngpftydusa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1018,7 +987,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#fjvedwqjil .gt_sourcenote {
+#ngpftydusa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1026,63 +995,63 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#fjvedwqjil .gt_left {
+#ngpftydusa .gt_left {
   text-align: left;
 }
 
-#fjvedwqjil .gt_center {
+#ngpftydusa .gt_center {
   text-align: center;
 }
 
-#fjvedwqjil .gt_right {
+#ngpftydusa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fjvedwqjil .gt_font_normal {
+#ngpftydusa .gt_font_normal {
   font-weight: normal;
 }
 
-#fjvedwqjil .gt_font_bold {
+#ngpftydusa .gt_font_bold {
   font-weight: bold;
 }
 
-#fjvedwqjil .gt_font_italic {
+#ngpftydusa .gt_font_italic {
   font-style: italic;
 }
 
-#fjvedwqjil .gt_super {
+#ngpftydusa .gt_super {
   font-size: 65%;
 }
 
-#fjvedwqjil .gt_footnote_marks {
+#ngpftydusa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fjvedwqjil .gt_asterisk {
+#ngpftydusa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fjvedwqjil .gt_indent_1 {
+#ngpftydusa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fjvedwqjil .gt_indent_2 {
+#ngpftydusa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fjvedwqjil .gt_indent_3 {
+#ngpftydusa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fjvedwqjil .gt_indent_4 {
+#ngpftydusa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fjvedwqjil .gt_indent_5 {
+#ngpftydusa .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1163,7 +1132,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>tab_revenue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 x 6
+<pre><code># A tibble: 2 × 6
   product units price amount distr  range_std
   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
 1 Elite     500   350 175000 normal     25000
@@ -1269,23 +1238,23 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format_table</span>(<span class="fu">make_cm_table</span>(tab_cost, tab_revenue))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div id="brbwewvpaj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#brbwewvpaj table {
+<div id="ksrdidfhfj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ksrdidfhfj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#brbwewvpaj thead, #brbwewvpaj tbody, #brbwewvpaj tfoot, #brbwewvpaj tr, #brbwewvpaj td, #brbwewvpaj th {
+#ksrdidfhfj thead, #ksrdidfhfj tbody, #ksrdidfhfj tfoot, #ksrdidfhfj tr, #ksrdidfhfj td, #ksrdidfhfj th {
   border-style: none;
 }
 
-#brbwewvpaj p {
+#ksrdidfhfj p {
   margin: 0;
   padding: 0;
 }
 
-#brbwewvpaj .gt_table {
+#ksrdidfhfj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1311,12 +1280,12 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-left-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_caption {
+#ksrdidfhfj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#brbwewvpaj .gt_title {
+#ksrdidfhfj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1328,7 +1297,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-width: 0;
 }
 
-#brbwewvpaj .gt_subtitle {
+#ksrdidfhfj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1340,7 +1309,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-top-width: 0;
 }
 
-#brbwewvpaj .gt_heading {
+#ksrdidfhfj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1352,13 +1321,13 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_bottom_border {
+#ksrdidfhfj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_col_headings {
+#ksrdidfhfj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1373,7 +1342,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_col_heading {
+#ksrdidfhfj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1393,7 +1362,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   overflow-x: hidden;
 }
 
-#brbwewvpaj .gt_column_spanner_outer {
+#ksrdidfhfj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1405,15 +1374,15 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 4px;
 }
 
-#brbwewvpaj .gt_column_spanner_outer:first-child {
+#ksrdidfhfj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#brbwewvpaj .gt_column_spanner_outer:last-child {
+#ksrdidfhfj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#brbwewvpaj .gt_column_spanner {
+#ksrdidfhfj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1425,11 +1394,11 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   width: 100%;
 }
 
-#brbwewvpaj .gt_spanner_row {
+#ksrdidfhfj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#brbwewvpaj .gt_group_heading {
+#ksrdidfhfj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1455,7 +1424,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   text-align: left;
 }
 
-#brbwewvpaj .gt_empty_group_heading {
+#ksrdidfhfj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1470,15 +1439,15 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   vertical-align: middle;
 }
 
-#brbwewvpaj .gt_from_md > :first-child {
+#ksrdidfhfj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#brbwewvpaj .gt_from_md > :last-child {
+#ksrdidfhfj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#brbwewvpaj .gt_row {
+#ksrdidfhfj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1497,7 +1466,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   overflow-x: hidden;
 }
 
-#brbwewvpaj .gt_stub {
+#ksrdidfhfj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1510,7 +1479,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#brbwewvpaj .gt_stub_row_group {
+#ksrdidfhfj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1524,15 +1493,15 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   vertical-align: top;
 }
 
-#brbwewvpaj .gt_row_group_first td {
+#ksrdidfhfj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#brbwewvpaj .gt_row_group_first th {
+#ksrdidfhfj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#brbwewvpaj .gt_summary_row {
+#ksrdidfhfj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1542,16 +1511,16 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#brbwewvpaj .gt_first_summary_row {
+#ksrdidfhfj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_first_summary_row.thick {
+#ksrdidfhfj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#brbwewvpaj .gt_last_summary_row {
+#ksrdidfhfj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1561,7 +1530,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_grand_summary_row {
+#ksrdidfhfj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1571,7 +1540,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#brbwewvpaj .gt_first_grand_summary_row {
+#ksrdidfhfj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1581,7 +1550,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-top-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_last_grand_summary_row_top {
+#ksrdidfhfj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1591,11 +1560,11 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_striped {
+#ksrdidfhfj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#brbwewvpaj .gt_table_body {
+#ksrdidfhfj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1604,7 +1573,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-bottom-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_footnotes {
+#ksrdidfhfj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1618,7 +1587,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_footnote {
+#ksrdidfhfj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1627,7 +1596,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#brbwewvpaj .gt_sourcenotes {
+#ksrdidfhfj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1641,7 +1610,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   border-right-color: #D3D3D3;
 }
 
-#brbwewvpaj .gt_sourcenote {
+#ksrdidfhfj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1649,63 +1618,63 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
   padding-right: 5px;
 }
 
-#brbwewvpaj .gt_left {
+#ksrdidfhfj .gt_left {
   text-align: left;
 }
 
-#brbwewvpaj .gt_center {
+#ksrdidfhfj .gt_center {
   text-align: center;
 }
 
-#brbwewvpaj .gt_right {
+#ksrdidfhfj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#brbwewvpaj .gt_font_normal {
+#ksrdidfhfj .gt_font_normal {
   font-weight: normal;
 }
 
-#brbwewvpaj .gt_font_bold {
+#ksrdidfhfj .gt_font_bold {
   font-weight: bold;
 }
 
-#brbwewvpaj .gt_font_italic {
+#ksrdidfhfj .gt_font_italic {
   font-style: italic;
 }
 
-#brbwewvpaj .gt_super {
+#ksrdidfhfj .gt_super {
   font-size: 65%;
 }
 
-#brbwewvpaj .gt_footnote_marks {
+#ksrdidfhfj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#brbwewvpaj .gt_asterisk {
+#ksrdidfhfj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#brbwewvpaj .gt_indent_1 {
+#ksrdidfhfj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#brbwewvpaj .gt_indent_2 {
+#ksrdidfhfj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#brbwewvpaj .gt_indent_3 {
+#ksrdidfhfj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#brbwewvpaj .gt_indent_4 {
+#ksrdidfhfj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#brbwewvpaj .gt_indent_5 {
+#ksrdidfhfj .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1851,7 +1820,7 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 </div>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">randomize_input_table</span>(<span class="at">.tab =</span> tab_revenue, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 x 6
+<pre><code># A tibble: 2 × 6
   product units price  amount distr  range_std
   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
 1 Elite     500   350 152577. normal     25000
@@ -2359,36 +2328,39 @@ IC_{c,i} = IC_{c}*\frac{DC_{c,i}}{\sum_{i} DC_i}
 <span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>  ), <span class="at">.progress =</span> <span class="cn">TRUE</span></span>
 <span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code> =============================&gt;-   98% |  ETA:  0s</code></pre>
+<pre><code> ■■■■■■■                           21% |  ETA:  4s</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> ■■■■■■■■■■■■■■■■■■■■■■■■■         79% |  ETA:  1s</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>3.86 sec elapsed</code></pre>
+<pre><code>5.27 sec elapsed</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">20</span>, future<span class="sc">::</span><span class="fu">availableCores</span>() <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>()</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(<span class="st">"multisession"</span>, <span class="at">workers =</span> cores)</span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>lst_monte_carlo <span class="ot">&lt;-</span> furrr<span class="sc">::</span><span class="fu">future_map</span>(</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>,</span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">get_cost_allocation_and_cm_list</span>(</span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.tab_cost =</span> <span class="fu">randomize_input_table</span>(tab_cost, .x),</span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.tab_revenue =</span> <span class="fu">randomize_input_table</span>(tab_revenue, .x)</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">.progress =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">.options =</span> furrr<span class="sc">::</span><span class="fu">furrr_options</span>(<span class="at">seed =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(<span class="st">"default"</span>)</span>
-<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>cores <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="dv">20</span>, future<span class="sc">::</span><span class="fu">availableCores</span>() <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">tic</span>()</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(<span class="st">"multisession"</span>, <span class="at">workers =</span> cores)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>lst_monte_carlo <span class="ot">&lt;-</span> furrr<span class="sc">::</span><span class="fu">future_map</span>(</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>,</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">get_cost_allocation_and_cm_list</span>(</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.tab_cost =</span> <span class="fu">randomize_input_table</span>(tab_cost, .x),</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.tab_revenue =</span> <span class="fu">randomize_input_table</span>(tab_revenue, .x)</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">.progress =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">.options =</span> furrr<span class="sc">::</span><span class="fu">furrr_options</span>(<span class="at">seed =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(<span class="st">"default"</span>)</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>tictoc<span class="sc">::</span><span class="fu">toc</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>28.09 sec elapsed</code></pre>
+<pre><code>259 sec elapsed</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>lst_monte_carlo_transposed <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">transpose</span>(lst_monte_carlo)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display_histogram</span>(<span class="at">.lst =</span> lst_monte_carlo_transposed<span class="sc">$</span>cm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>lst_monte_carlo_transposed <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">transpose</span>(lst_monte_carlo)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display_histogram</span>(<span class="at">.lst =</span> lst_monte_carlo_transposed<span class="sc">$</span>cm2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="day1_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
 </div>

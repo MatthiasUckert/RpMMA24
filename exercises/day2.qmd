@@ -588,10 +588,10 @@ download_pdf <- function(.url, .dir, .wait = 1) {
 }
 ```
 
-Download the first 100 reports
+Download the first 10 reports
 
 ```{r}
-purrr::walk(tab_company_reports$report_link[1:100], ~ download_pdf(.x, "day2/pdfs"), .progress = TRUE)
+purrr::walk(tab_company_reports$report_link[1:10], ~ download_pdf(.x, "day2/pdfs"), .progress = TRUE)
 ```
 
 **Explanation**:
@@ -628,30 +628,33 @@ download_sec_master_index <- function(.year, .quarter, .dir) {
   if (!(.year %in% 1993:as.numeric(format(Sys.Date(), "%Y")))) {
     stop("Invalid year. The EDGAR system started in 1993.")
   }
-  
+
   if (!(.quarter %in% 1:4)) {
     stop("Invalid quarter. It should be between 1 and 4.")
   }
-  
-  if (!dir.exists(.dir)) dir.create(.dir)
-  
+
+  if (!dir.exists(.dir)) dir.create(.dir, recursive = TRUE)
+
   # Define the base URL for the EDGAR master index
   base_url <- "https://www.sec.gov/Archives/edgar/full-index"
-  
+
   # Construct the URL for the specific .year and quarter
   url <- paste0(base_url, "/", .year, "/QTR", .quarter, "/master.idx")
-  
+
+
   # Define the destination path
   dest_path <- file.path(.dir, paste0("master_", .year, "_QTR", .quarter, ".idx"))
-  
-  # Download the master index using httr::GET
-  response <- httr::GET(url, httr::add_headers(Connection = "keep-alive", `User-Agent` = "Matthias"))
-  
-  if (response$status_code == 200) {
-    writeBin(httr::content(response, "raw"), dest_path)
-    return(dest_path)
-  } else {
-    stop("Failed to download the master index. HTTP status code: ", response$status_code)
+
+  if (!file.exists(dest_path)) {
+    # Download the master index using httr::GET
+    response <- httr::GET(url, httr::add_headers(Connection = "keep-alive", `User-Agent` = "Matthias"))
+
+    if (response$status_code == 200) {
+      writeBin(httr::content(response, "raw"), dest_path)
+      return(dest_path)
+    } else {
+      stop("Failed to download the master index. HTTP status code: ", response$status_code)
+    }
   }
 }
 
@@ -684,7 +687,7 @@ read_master_idx <- function(.path) {
   return(out_)
 }
 
-tab_master <- read_master_idx("day2/sec/master_2022_QTR1.idx")
+tab_master <- read_master_idx("day2/sec/master/master_2022_QTR1.idx")
 tab_master
 ```
 
@@ -707,39 +710,40 @@ download_full_submision_file <- function(.tab, .cik, .year, .dir) {
 download_full_submission_file <- function(.tab, .cik, .year, .dir) {
   # Filter the dataframe based on CIK and year
   filtered_rows <- .tab[.tab$cik == .cik & as.character(lubridate::year(.tab$date_filed)) == .year, ]
-  
+
   # Identify the 10-K submission row
   submission_row <- filtered_rows[filtered_rows$form_type == "10-K", ]
-  
+
   # Check if a 10-K submission exists for the given CIK and year
   if (nrow(submission_row) == 0) {
     stop("No 10-K submission found for the given CIK and year.")
   }
-  
+
   # Extract the URL for the 10-K submission
   base_url <- "https://www.sec.gov/Archives/"
   submission_url <- paste0(base_url, submission_row$filename)
-  
+
   if (!dir.exists(.dir)) dir.create(.dir)
 
-  
+
   # Define the destination path
   dest_path <- paste0(.dir, .cik, "_", .year, "_10K.txt")
-  
-  # Download the 10-K submission
-  response <- httr::GET(submission_url, httr::add_headers(Connection = "keep-alive", `User-Agent` = "Matthias"))
-  
-  if (response$status_code == 200) {
-    writeBin(httr::content(response, "raw"), dest_path)
-    return(dest_path)
-  } else {
-    stop("Failed to download the 10-K submission. HTTP status code: ", response$status_code)
+
+  if (!file.exists(dest_path)) {
+    # Download the 10-K submission
+    response <- httr::GET(submission_url, httr::add_headers(Connection = "keep-alive", `User-Agent` = "Matthias"))
+
+    if (response$status_code == 200) {
+      writeBin(httr::content(response, "raw"), dest_path)
+      return(dest_path)
+    } else {
+      stop("Failed to download the 10-K submission. HTTP status code: ", response$status_code)
+    }
   }
 }
 
-# Example usage:
-# Assuming `master_df` is the dataframe obtained from Task 2
-# download_full_submission_file(master_df, "1000045", "2022")
+
+download_full_submission_file(tab_master, "1000228", "2022", "day2/sec/txt")
 
 ```
 

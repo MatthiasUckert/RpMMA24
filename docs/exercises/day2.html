@@ -252,16 +252,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>-- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
-v dplyr     1.1.2     v readr     2.1.4
-v forcats   1.0.0     v stringr   1.5.0
-v ggplot2   3.4.3     v tibble    3.2.1
-v lubridate 1.9.2     v tidyr     1.3.0
-v purrr     1.0.2     
--- Conflicts ------------------------------------------ tidyverse_conflicts() --
-x dplyr::filter() masks stats::filter()
-x dplyr::lag()    masks stats::lag()
-i Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
@@ -353,24 +353,24 @@ The following object is masked from 'package:readr':
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tab_companies <span class="ot">&lt;-</span> <span class="fu">get_companies</span>(<span class="at">.n =</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code> ============================&gt;--   92% |  ETA:  0s</code></pre>
+<pre><code> ■■■■■■■■■■■                       33% |  ETA:  2s</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tab_companies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 93 x 5
+<pre><code># A tibble: 93 × 5
    company_id                company_name company_link industry_name sector_name
    &lt;chr&gt;                     &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         &lt;chr&gt;      
- 1 aeris-environmental       Aeris Envir~ https://www~ "Pollution &amp;~ Industrial~
- 2 scpharmaceuticals-inc     scPharmaceu~ https://www~ "Biotechnolo~ Healthcare 
- 3 us-concrete-inc           U.S. Concre~ https://www~ "Cement"      Industrial~
- 4 1-800-flowerscom          1-800-FLOWE~ https://www~ "Specialty R~ Services   
- 5 10x-genomics-inc          10x Genomic~ https://www~ "Healthcare ~ Healthcare 
- 6 111-inc                   111, Inc.    https://www~ ""            Healthcare 
- 7 degree                    1414 Degrees https://www~ ""            Utilities  
- 8 180-life-sciences-corp    180 Life Sc~ https://www~ "Biotechnolo~ Healthcare 
- 9 1847-holdings-llc         1847 Holdin~ https://www~ "Conglomerat~ Industrial~
-10 1895-bancorp-of-wisconsi~ 1895 Bancor~ https://www~ "Financial S~ Financial  
-# i 83 more rows</code></pre>
+ 1 aeris-environmental       Aeris Envir… https://www… "Pollution &amp;… Industrial…
+ 2 scpharmaceuticals-inc     scPharmaceu… https://www… "Biotechnolo… Healthcare 
+ 3 us-concrete-inc           U.S. Concre… https://www… "Cement"      Industrial…
+ 4 1-800-flowerscom          1-800-FLOWE… https://www… "Specialty R… Services   
+ 5 10x-genomics-inc          10x Genomic… https://www… "Healthcare … Healthcare 
+ 6 111-inc                   111, Inc.    https://www… ""            Healthcare 
+ 7 degree                    1414 Degrees https://www… ""            Utilities  
+ 8 180-life-sciences-corp    180 Life Sc… https://www… "Biotechnolo… Healthcare 
+ 9 1847-holdings-llc         1847 Holdin… https://www… "Conglomerat… Industrial…
+10 1895-bancorp-of-wisconsi… 1895 Bancor… https://www… "Financial S… Financial  
+# ℹ 83 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -512,20 +512,20 @@ The following object is masked from 'package:readr':
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(format <span class="sc">==</span> <span class="st">".fst"</span>)</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>tab_log_companies</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 93 x 8
+<pre><code># A tibble: 93 × 8
    company_id  company_link format path  err   err_msg start_time           time
    &lt;chr&gt;       &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt; &lt;lgl&gt; &lt;lgl&gt;   &lt;dttm&gt;              &lt;dbl&gt;
- 1 aeris-envi~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:30 0.476
- 2 scpharmace~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:31 1.14 
- 3 us-concret~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:33 1.10 
- 4 1-800-flow~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:36 0.415
- 5 10x-genomi~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:38 1.06 
- 6 111-inc     https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:40 1.15 
- 7 degree      https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:43 0.507
- 8 180-life-s~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:44 1.09 
- 9 1847-holdi~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:46 1.09 
-10 1895-banco~ https://www~ .fst   day2~ FALSE NA      2023-08-22 10:49:48 1.10 
-# i 83 more rows</code></pre>
+ 1 aeris-envi… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:02 0.834
+ 2 scpharmace… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:04 0.890
+ 3 us-concret… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:06 0.661
+ 4 1-800-flow… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:08 0.800
+ 5 10x-genomi… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:10 0.748
+ 6 111-inc     https://www… .fst   day2… FALSE NA      2023-08-23 12:49:12 1.29 
+ 7 degree      https://www… .fst   day2… FALSE NA      2023-08-23 12:49:14 1.77 
+ 8 180-life-s… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:17 1.50 
+ 9 1847-holdi… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:19 0.999
+10 1895-banco… https://www… .fst   day2… FALSE NA      2023-08-23 12:49:21 0.897
+# ℹ 83 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -583,11 +583,11 @@ The following object is masked from 'package:readr':
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>company_details <span class="ot">&lt;-</span> <span class="fu">get_company_info</span>(<span class="fu">read_raw_html</span>(tab_log_companies<span class="sc">$</span>path[<span class="dv">1</span>]))</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>company_details</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 x 11
+<pre><code># A tibble: 1 × 11
   vendor_name         ticker_name exchange_name   employees location description
   &lt;chr&gt;               &lt;chr&gt;       &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      
-1 Aeris Environmental AEI         Exchange ASX M~ 11-50 Em~ Based i~ Aeris Envi~
-# i 5 more variables: company_website &lt;chr&gt;, facebook &lt;chr&gt;, youtube &lt;chr&gt;,
+1 Aeris Environmental AEI         Exchange ASX M… 11-50 Em… Based i… Aeris Envi…
+# ℹ 5 more variables: company_website &lt;chr&gt;, facebook &lt;chr&gt;, youtube &lt;chr&gt;,
 #   linkedin &lt;chr&gt;, twitter &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -633,15 +633,15 @@ The following object is masked from 'package:readr':
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>report_links <span class="ot">&lt;-</span> <span class="fu">get_company_reports</span>(<span class="fu">read_raw_html</span>(tab_log_companies<span class="sc">$</span>path[<span class="dv">1</span>]))</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>report_links</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 x 3
+<pre><code># A tibble: 6 × 3
   heading             year report_link                                          
   &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;                                                
-1 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepor~
-2 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepor~
-3 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepor~
-4 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepor~
-5 2017 Annual Report  2017 https://www.annualreports.com/HostedData/AnnualRepor~
-6 2016 Annual Report  2016 https://www.annualreports.com/HostedData/AnnualRepor~</code></pre>
+1 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepor…
+2 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepor…
+3 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepor…
+4 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepor…
+5 2017 Annual Report  2017 https://www.annualreports.com/HostedData/AnnualRepor…
+6 2016 Annual Report  2016 https://www.annualreports.com/HostedData/AnnualRepor…</code></pre>
 </div>
 </div>
 </section>
@@ -660,25 +660,28 @@ The following object is masked from 'package:readr':
 <li><p><strong><code>dplyr::bind_rows</code></strong>: After extracting the information for each company, the results are combined into a single dataframe.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tab_companies_info <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(tab_log_companies<span class="sc">$</span>path, <span class="sc">~</span> <span class="fu">get_company_info</span>(<span class="fu">read_raw_html</span>(.x)), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tab_companies_info <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(tab_companies_info)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>tab_companies_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tab_companies_info <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(tab_log_companies<span class="sc">$</span>path, <span class="sc">~</span> <span class="fu">get_company_info</span>(<span class="fu">read_raw_html</span>(.x)), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code> ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% |  ETA:  0s</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tab_companies_info <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(tab_companies_info)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>tab_companies_info</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 77 x 11
+<pre><code># A tibble: 77 × 11
    vendor_name          ticker_name exchange_name employees location description
    &lt;chr&gt;                &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      
- 1 Aeris Environmental  AEI         Exchange ASX~ 11-50 Em~ Based i~ "Aeris Env~
- 2 scPharmaceuticals I~ SCPH        Exchange NAS~ 11-50 Em~ Based i~ "scPharmac~
- 3 U.S. Concrete, Inc.  RMIX        Exchange NAS~ 1001-500~ Based i~ "U.S. Conc~
- 4 1-800-FLOWERS.COM    FLWS        Exchange NAS~ 1001-500~ Based i~ "1-800-Flo~
- 5 10x Genomics, Inc.   TXG         Exchange NAS~ 501-1000~ Based i~ "10x Genom~
- 6 111, Inc.            YI          Exchange NAS~ 1001-500~ Based i~ "111, Inc.~
- 7 1414 Degrees         14D         Exchange ASX~ 11-50 Em~ Based i~ "1414 Degr~
- 8 180 Life Sciences C~ ATNF        Exchange NAS~ 1-10 Emp~ Based i~ "180 Life ~
- 9 1847 Holdings LLC    EFSH        Exchange NYS~ 1-10 Emp~ Based i~ "1847 Hold~
-10 1895 Bancorp of Wis~ BCOW        Exchange NAS~ 51-200 E~ Based i~ "1895 Banc~
-# i 67 more rows
-# i 5 more variables: company_website &lt;chr&gt;, facebook &lt;chr&gt;, youtube &lt;chr&gt;,
+ 1 Aeris Environmental  AEI         Exchange ASX… 11-50 Em… Based i… "Aeris Env…
+ 2 scPharmaceuticals I… SCPH        Exchange NAS… 11-50 Em… Based i… "scPharmac…
+ 3 U.S. Concrete, Inc.  RMIX        Exchange NAS… 1001-500… Based i… "U.S. Conc…
+ 4 1-800-FLOWERS.COM    FLWS        Exchange NAS… 1001-500… Based i… "1-800-Flo…
+ 5 10x Genomics, Inc.   TXG         Exchange NAS… 501-1000… Based i… "10x Genom…
+ 6 111, Inc.            YI          Exchange NAS… 1001-500… Based i… "111, Inc.…
+ 7 1414 Degrees         14D         Exchange ASX… 11-50 Em… Based i… "1414 Degr…
+ 8 180 Life Sciences C… ATNF        Exchange NAS… 1-10 Emp… Based i… "180 Life …
+ 9 1847 Holdings LLC    EFSH        Exchange NYS… 1-10 Emp… Based i… "1847 Hold…
+10 1895 Bancorp of Wis… BCOW        Exchange NAS… 51-200 E… Based i… "1895 Banc…
+# ℹ 67 more rows
+# ℹ 5 more variables: company_website &lt;chr&gt;, facebook &lt;chr&gt;, youtube &lt;chr&gt;,
 #   linkedin &lt;chr&gt;, twitter &lt;chr&gt;</code></pre>
 </div>
 </div>
@@ -687,27 +690,27 @@ The following object is masked from 'package:readr':
 <li>This is similar to the previous block but focuses on extracting the annual report links for each company.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tab_company_reports <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(tab_log_companies<span class="sc">$</span>path, <span class="sc">~</span> <span class="fu">get_company_reports</span>(<span class="fu">read_raw_html</span>(.x)), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tab_company_reports <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(tab_log_companies<span class="sc">$</span>path, <span class="sc">~</span> <span class="fu">get_company_reports</span>(<span class="fu">read_raw_html</span>(.x)), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code> =======================&gt;-------   77% |  ETA:  1s</code></pre>
+<pre><code> ■■■■■■■■■■■■■■■■                  52% |  ETA:  2s</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tab_company_reports <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(tab_company_reports)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>tab_company_reports</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tab_company_reports <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(tab_company_reports)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>tab_company_reports</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 842 x 3
+<pre><code># A tibble: 842 × 3
    heading             year report_link                                         
    &lt;chr&gt;              &lt;int&gt; &lt;chr&gt;                                               
- 1 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepo~
- 2 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepo~
- 3 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepo~
- 4 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepo~
- 5 2017 Annual Report  2017 https://www.annualreports.com/HostedData/AnnualRepo~
- 6 2016 Annual Report  2016 https://www.annualreports.com/HostedData/AnnualRepo~
- 7 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepo~
- 8 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepo~
- 9 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepo~
-10 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepo~
-# i 832 more rows</code></pre>
+ 1 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepo…
+ 2 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepo…
+ 3 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepo…
+ 4 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepo…
+ 5 2017 Annual Report  2017 https://www.annualreports.com/HostedData/AnnualRepo…
+ 6 2016 Annual Report  2016 https://www.annualreports.com/HostedData/AnnualRepo…
+ 7 2021 Annual Report  2021 https://www.annualreports.com/HostedData/AnnualRepo…
+ 8 2020 Annual Report  2020 https://www.annualreports.com/HostedData/AnnualRepo…
+ 9 2019 Annual Report  2019 https://www.annualreports.com/HostedData/AnnualRepo…
+10 2018 Annual Report  2018 https://www.annualreports.com/HostedData/AnnualRepo…
+# ℹ 832 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -722,67 +725,67 @@ The following object is masked from 'package:readr':
 <li><p>The function also writes a log to a CSV file, which can be useful for tracking and debugging.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>download_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(.url, .dir, <span class="at">.wait =</span> <span class="dv">1</span>) {</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create the directory if it doesn't exist</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  dir_ <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_create</span>(.dir, <span class="st">"pdf"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract the filename from the URL</span></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  id_ <span class="ot">&lt;-</span> <span class="fu">basename</span>(.url)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  fil_ <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dir_, id_)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the file already exists</span></span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(fil_)) {</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a log tibble</span></span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>  tab_log_ <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">file_id =</span> id_,</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">file_link =</span> .url,</span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> fil_,</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">err =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">err_msg =</span> <span class="cn">NA_character_</span>,</span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_time =</span> <span class="cn">NA_real_</span>,</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="cn">NA_real_</span></span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Try to download the PDF</span></span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>      start_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>      response <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(.url, httr<span class="sc">::</span><span class="fu">write_disk</span>(fil_, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Check if the response content type is a PDF</span></span>
-<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (httr<span class="sc">::</span><span class="fu">http_type</span>(response) <span class="sc">!=</span> <span class="st">"application/pdf"</span>) {</span>
-<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"The URL does not point to a PDF."</span>)</span>
-<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>      end_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(.wait)</span>
-<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> tab_log_ <span class="sc">%&gt;%</span></span>
-<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">start_time =</span> start_time_,</span>
-<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">time =</span> <span class="fu">difftime</span>(end_time_, start_time_, <span class="at">units =</span> <span class="st">"secs"</span>)</span>
-<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
-<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(tab_log_, <span class="at">err =</span> <span class="cn">TRUE</span>, <span class="at">err_msg =</span> e<span class="sc">$</span>message)</span>
-<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab_log_)</span>
-<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write the log to a CSV file</span></span>
-<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a>  log_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(.dir, <span class="st">"log.csv"</span>)</span>
-<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(log_file)) {</span>
-<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, log_file, <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>)</span>
-<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, log_file, <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>download_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(.url, .dir, <span class="at">.wait =</span> <span class="dv">1</span>) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create the directory if it doesn't exist</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  dir_ <span class="ot">&lt;-</span> fs<span class="sc">::</span><span class="fu">dir_create</span>(.dir, <span class="st">"pdf"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract the filename from the URL</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  id_ <span class="ot">&lt;-</span> <span class="fu">basename</span>(.url)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  fil_ <span class="ot">&lt;-</span> <span class="fu">file.path</span>(dir_, id_)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the file already exists</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">file.exists</span>(fil_)) {</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a log tibble</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  tab_log_ <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">file_id =</span> id_,</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">file_link =</span> .url,</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> fil_,</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">err =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">err_msg =</span> <span class="cn">NA_character_</span>,</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_time =</span> <span class="cn">NA_real_</span>,</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">time =</span> <span class="cn">NA_real_</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Try to download the PDF</span></span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>      start_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>      response <span class="ot">&lt;-</span> httr<span class="sc">::</span><span class="fu">GET</span>(.url, httr<span class="sc">::</span><span class="fu">write_disk</span>(fil_, <span class="at">overwrite =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Check if the response content type is a PDF</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (httr<span class="sc">::</span><span class="fu">http_type</span>(response) <span class="sc">!=</span> <span class="st">"application/pdf"</span>) {</span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">"The URL does not point to a PDF."</span>)</span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>      end_time_ <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(.wait)</span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> tab_log_ <span class="sc">%&gt;%</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">start_time =</span> start_time_,</span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">time =</span> <span class="fu">difftime</span>(end_time_, start_time_, <span class="at">units =</span> <span class="st">"secs"</span>)</span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e) {</span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>      tab_log_ <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(tab_log_, <span class="at">err =</span> <span class="cn">TRUE</span>, <span class="at">err_msg =</span> e<span class="sc">$</span>message)</span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab_log_)</span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Write the log to a CSV file</span></span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a>  log_file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(.dir, <span class="st">"log.csv"</span>)</span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(log_file)) {</span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, log_file, <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>)</span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a>    readr<span class="sc">::</span><span class="fu">write_delim</span>(tab_log_, log_file, <span class="st">"|"</span>, <span class="at">na =</span> <span class="st">""</span>, <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Download the first 100 reports</p>
+<p>Download the first 10 reports</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">walk</span>(tab_company_reports<span class="sc">$</span>report_link[<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>], <span class="sc">~</span> <span class="fu">download_pdf</span>(.x, <span class="st">"day2/pdfs"</span>), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">walk</span>(tab_company_reports<span class="sc">$</span>report_link[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>], <span class="sc">~</span> <span class="fu">download_pdf</span>(.x, <span class="st">"day2/pdfs"</span>), <span class="at">.progress =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Explanation</strong>:</p>
 <ul>
@@ -801,15 +804,13 @@ The following object is masked from 'package:readr':
 <li><p>Test the function by downloading the master index for a year and quarter of your choice.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>download_sec_master_index <span class="ot">&lt;-</span> <span class="cf">function</span>(.year, .quarter, .dir) {</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>download_sec_master_index <span class="ot">&lt;-</span> <span class="cf">function</span>(.year, .quarter, .dir) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "day2/sec/master/master_2022_QTR1.idx"</code></pre>
-</div>
+
 </div>
 <p><strong>Task 2: Inspect and Parse the Downloaded File</strong></p>
 <ol type="1">
@@ -819,9 +820,9 @@ The following object is masked from 'package:readr':
 <li><p>Inspect the dataframe to ensure the data has been parsed correctly.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>read_master_idx <span class="ot">&lt;-</span> <span class="cf">function</span>(.path) {</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>read_master_idx <span class="ot">&lt;-</span> <span class="cf">function</span>(.path) {</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
@@ -831,20 +832,20 @@ e.g.:
   problems(dat)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 356,328 x 5
+<pre><code># A tibble: 356,328 × 5
    cik     company_name           form_type date_filed filename                 
    &lt;chr&gt;   &lt;chr&gt;                  &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;                    
- 1 1000045 NICHOLAS FINANCIAL INC 10-Q      2022-02-09 edgar/data/1000045/00009~
- 2 1000045 NICHOLAS FINANCIAL INC 4         2022-02-03 edgar/data/1000045/00010~
- 3 1000045 NICHOLAS FINANCIAL INC 4         2022-02-03 edgar/data/1000045/00010~
- 4 1000045 NICHOLAS FINANCIAL INC 4         2022-02-11 edgar/data/1000045/00013~
- 5 1000045 NICHOLAS FINANCIAL INC 4         2022-02-18 edgar/data/1000045/00013~
- 6 1000045 NICHOLAS FINANCIAL INC 8-K       2022-01-13 edgar/data/1000045/00009~
- 7 1000045 NICHOLAS FINANCIAL INC 8-K       2022-01-31 edgar/data/1000045/00009~
- 8 1000045 NICHOLAS FINANCIAL INC SC 13G/A  2022-02-09 edgar/data/1000045/00011~
- 9 1000045 NICHOLAS FINANCIAL INC SC 13G    2022-02-08 edgar/data/1000045/00003~
-10 1000045 NICHOLAS FINANCIAL INC SC 13G    2022-02-11 edgar/data/1000045/00010~
-# i 356,318 more rows</code></pre>
+ 1 1000045 NICHOLAS FINANCIAL INC 10-Q      2022-02-09 edgar/data/1000045/00009…
+ 2 1000045 NICHOLAS FINANCIAL INC 4         2022-02-03 edgar/data/1000045/00010…
+ 3 1000045 NICHOLAS FINANCIAL INC 4         2022-02-03 edgar/data/1000045/00010…
+ 4 1000045 NICHOLAS FINANCIAL INC 4         2022-02-11 edgar/data/1000045/00013…
+ 5 1000045 NICHOLAS FINANCIAL INC 4         2022-02-18 edgar/data/1000045/00013…
+ 6 1000045 NICHOLAS FINANCIAL INC 8-K       2022-01-13 edgar/data/1000045/00009…
+ 7 1000045 NICHOLAS FINANCIAL INC 8-K       2022-01-31 edgar/data/1000045/00009…
+ 8 1000045 NICHOLAS FINANCIAL INC SC 13G/A  2022-02-09 edgar/data/1000045/00011…
+ 9 1000045 NICHOLAS FINANCIAL INC SC 13G    2022-02-08 edgar/data/1000045/00003…
+10 1000045 NICHOLAS FINANCIAL INC SC 13G    2022-02-11 edgar/data/1000045/00010…
+# ℹ 356,318 more rows</code></pre>
 </div>
 </div>
 <p><strong>Task 3: Download a Full Submission Text File</strong></p>
@@ -854,9 +855,9 @@ e.g.:
 <li><p>Test the function by downloading the full submission text file for the identified company.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>download_full_submision_file <span class="ot">&lt;-</span> <span class="cf">function</span>(.tab, .cik, .year, .dir) {</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>download_full_submision_file <span class="ot">&lt;-</span> <span class="cf">function</span>(.tab, .cik, .year, .dir) {</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># YOUR CODE HERE</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 
@@ -868,9 +869,9 @@ e.g.:
 <li>Ask your AI assistant to help you extract specific sections (e.g., “Item 1A. Risk Factors”) from the downloaded submission text files.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>extract_section <span class="ot">&lt;-</span> <span class="cf">function</span>(.path, <span class="at">.section =</span> <span class="st">"Item 1A. Risk Factors"</span>) {</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Your Code Here</span></span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>extract_section <span class="ot">&lt;-</span> <span class="cf">function</span>(.path, <span class="at">.section =</span> <span class="st">"Item 1A. Risk Factors"</span>) {</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Your Code Here</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 

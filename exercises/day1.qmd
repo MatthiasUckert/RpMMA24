@@ -5,7 +5,7 @@ format: html
 
 # Introduction
 
-Today's complex business environment demands tools that offer both versatility and precision. In this session, we'll explore three vital financial tasks using the R programming environment:
+In this session, we'll explore three vital financial tasks using the R programming environment:
 
 1.  **Cost Allocation:** Get a granular understanding of how costs disperse across products, emphasizing the allocation of indirect costs.
 
@@ -28,8 +28,6 @@ But why opt for R over mainstream tools like Excel?
 -   **Cost-Effective:** Being open-source, R is freely available, ensuring businesses don't incur additional software costs.
 
 By the session's end, you'll appreciate not just the theoretical aspects of these techniques but also the practical advantages of implementing them in an open-source environment like R.
-
-Let's get started!
 
 # Loading Libraries
 
